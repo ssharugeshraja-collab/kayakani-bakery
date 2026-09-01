@@ -1247,6 +1247,47 @@ footer p {
     cursor: pointer;
 }
 
+/* Mobile heading fix */
+@media (max-width: 600px) {
+    .hero {
+        padding: 35px 20px;
+        overflow: hidden;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        line-height: 1.15;
+        letter-spacing: 0;
+        word-break: normal;
+    }
+
+    .hero p {
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 1.5;
+    }
+
+    .hero span {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 13px;
+        margin: 3px 5px;
+    }
+}
 
 .done-button:hover {
 
