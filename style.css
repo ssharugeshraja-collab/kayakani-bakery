@@ -110,31 +110,12 @@ nav button {
 /* ================= HERO ================= */
 
 .hero {
-
-    min-height: 600px;
-
-    display: flex;
-
-    align-items: center;
-
-    padding: 60px 8%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #fffaf0f5,
-            #fffaf099,
-            #fffaf020
-        ),
-
-        url("bakery-banner.png");
-
+    background-image: url("bakery-banner.png");
     background-size: cover;
-
     background-position: center;
-
+    background-repeat: no-repeat;
 }
+ 
 
 
 .hero-text {
