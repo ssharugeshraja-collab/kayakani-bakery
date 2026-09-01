@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kayakani Bakery & Sweets</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">
+
+        🍰 Kayakani
+
+        <span>Bakery & Sweets</span>
+
+    </div>
+
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#menu">Menu</a>
+
+        <button onclick="openCart()">
+
+            🛒 Cart
+
+            <span id="cartCount">0</span>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-text">
+
+        <p class="small-title">
+
+            FRESHLY BAKED • ALWAYS FRESH
+
+        </p>
+
+
+        <h1>
+
+            Fresh Bakes.<br>
+
+            <span>Sweet Moments.</span>
+
+        </h1>
+
+
+        <p>
+
+            Delicious bakery items, snacks, sweets,
+            drinks and cakes for every occasion.
+
+        </p>
+
+
+        <a
+            href="#menu"
+            class="order-button"
+        >
+
+            Order Now →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+
+    <div>
+
+        🌿
+
+        <h3>Quality Ingredients</h3>
+
+        <p>Carefully selected</p>
+
+    </div>
+
+
+    <div>
+
+        👨‍🍳
+
+        <h3>Fresh Preparation</h3>
+
+        <p>Made with care</p>
+
+    </div>
+
+
+    <div>
+
+        ❤️
+
+        <h3>Great Taste</h3>
+
+        <p>Fresh every day</p>
+
+    </div>
+
+
+    <div>
+
+        😊
+
+        <h3>Made With Love</h3>
+
+        <p>For every customer</p>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================= MENU ================= -->
+
+<section
+    id="menu"
+    class="menu"
+>
+
+
+    <p class="small-title">
+
+        OUR MENU
+
+    </p>
+
+
+    <h2>
+
+        Choose Your Favourite
+
+    </h2>
+
+
+    <p>
+
+        Fresh and delicious items at affordable prices.
+
+    </p>
+
+
+
+    <!-- CATEGORY BUTTONS -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search bakery items..."
+        oninput="searchProducts()"
+    >
+
+</div>
+
+    <div class="categories">
+
+
+        <button
+            onclick="showCategory('all')"
+        >
+
+            All
+
+        </button>
+
+
+        <button
+            onclick="showCategory('tea')"
+        >
+
+            ☕ Tea & Coffee
+
+        </button>
+
+
+        <button
+            onclick="showCategory('snacks')"
+        >
+
+            🥨 Snacks
+
+        </button>
+
+
+        <button
+            onclick="showCategory('bread')"
+        >
+
+            🍞 Buns & Bread
+
+        </button>
+
+
+        <button
+            onclick="showCategory('mixture')"
+        >
+
+            🥜 Mixture
+
+        </button>
+
+
+        <button
+            onclick="showCategory('sweets')"
+        >
+
+            🍬 Sweets
+
+        </button>
+
+
+        <button
+            onclick="showCategory('drinks')"
+        >
+
+            🥤 Drinks
+
+        </button>
+
+
+        <button
+            onclick="showCategory('cakes')"
+        >
+
+            🍰 Cakes
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        id="products"
+        class="products"
+    ></div>
+
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about">
+
+
+    <div>
+
+        <p class="small-title">
+
+            ABOUT US
+
+        </p>
+
+
+        <h2>
+
+            Freshly Baked With Love ❤️
+
+        </h2>
+
+
+        <p>
+
+            Kayakani Bakery & Sweets provides fresh bakery
+            products, snacks, sweets, drinks and cakes.
+
+        </p>
+
+    </div>
+
+
+
+  <div class="location">
+
+    📍
+
+    <h3>Our Location</h3>
+
+    <p>
+        Dindigul Bus Stand,<br>
+        Spencer Complex,<br>
+        32, Dindigul, Tamil Nadu
+    </p>
+
+    <a
+        href="https://www.google.com/maps/search/?api=1&query=Kayakani+Bakery+and+Sweets+Dindigul+Bus+Stand+Spencer+Complex"
+        target="_blank"
+        class="map-button"
+    >
+        📍 Open in Google Maps
+    </a>
+
+</div>
+
+</section>
+
+<section class="contact">
+
+    <p class="small-title">CONTACT US</p>
+
+    <h2>Order Fresh & Delicious 🍰</h2>
+
+    <p>
+        Have a question or want to place an order?
+        Contact Kayakani Bakery & Sweets.
+    </p>
+
+    <div class="contact-buttons">
+
+        <a
+            href="tel:+919025611796"
+            class="call-button"
+        >
+            📞 Call Bakery
+        </a>
+
+        <a
+            href="https://wa.me/919025611796"
+            target="_blank"
+            class="whatsapp-contact"
+        >
+            📱 WhatsApp
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CART ================= -->
+
+<div
+    id="cartModal"
+    class="cart-modal"
+>
+
+
+    <div class="cart-box">
+
+
+        <button
+            class="close"
+            onclick="closeCart()"
+        >
+
+            ×
+
+        </button>
+
+
+        <h2>
+
+            🛒 Your Cart
+
+        </h2>
+
+
+        <div
+            id="cartItems"
+        ></div>
+
+
+        <hr>
+
+
+        <h3>
+
+            Total:
+            ₹<span id="cartTotal">0</span>
+
+        </h3>
+
+
+        <button
+            class="checkout"
+            onclick="checkout()"
+        >
+
+            Checkout
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= CHECKOUT ================= -->
+
+<div
+    id="checkoutModal"
+    class="checkout-modal"
+>
+
+
+    <div class="checkout-box">
+
+
+        <button
+            class="close"
+            onclick="closeCheckout()"
+        >
+
+            ×
+
+        </button>
+
+
+        <h2>
+
+            📝 Customer Details
+
+        </h2>
+
+
+
+        <!-- CUSTOMER NAME -->
+
+        <label>
+
+            Your Name
+
+        </label>
+
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Enter your name"
+        >
+
+
+
+        <!-- PHONE -->
+
+        <label>
+
+            Mobile Number
+
+        </label>
+
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Enter mobile number"
+        >
+
+
+
+        <!-- ORDER TYPE -->
+
+        <label>
+
+            Order Type
+
+        </label>
+
+
+        <div class="order-type">
+
+
+            <button
+                type="button"
+                id="pickupBtn"
+                class="selected"
+                onclick="selectOrderType('Pickup')"
+            >
+
+                🏪 Pickup
+
+            </button>
+
+
+            <button
+                type="button"
+                id="deliveryBtn"
+                onclick="selectOrderType('Delivery')"
+            >
+
+                🚚 Delivery
+
+            </button>
+
+
+        </div>
+
+
+        <input
+            type="hidden"
+            id="orderType"
+            value="Pickup"
+        >
+
+
+
+        <!-- ADDRESS -->
+
+        <div
+            id="addressSection"
+            class="address-section"
+        >
+
+            <label>
+
+                Delivery Address
+
+            </label>
+
+
+            <textarea
+                id="address"
+                placeholder="Enter your delivery address"
+                disabled
+            ></textarea>
+
+        </div>
+
+
+
+        <!-- CAKE CUSTOMIZATION -->
+
+        <div
+            id="cakeCustomization"
+            class="cake-customization"
+        >
+
+            <h3>
+
+                🎂 Cake Details
+
+            </h3>
+
+
+            <label>
+
+                Message on Cake
+
+            </label>
+
+
+            <input
+                type="text"
+                id="cakeMessage"
+                placeholder="Example: Happy Birthday Arun"
+            >
+
+
+            <label>
+
+                Special Instructions
+
+            </label>
+
+
+            <textarea
+                id="cakeInstructions"
+                placeholder="Example: Chocolate decoration"
+            ></textarea>
+
+        </div>
+
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="order-summary">
+
+
+            <h3>
+
+                🧾 Order Summary
+
+            </h3>
+
+
+            <div
+                id="checkoutItems"
+            ></div>
+
+
+            <div class="summary-row">
+
+                <span>
+
+                    Items Total
+
+                </span>
+
+
+                <strong>
+
+                    ₹<span id="itemsTotal">0</span>
+
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+
+                    Delivery Charge
+
+                </span>
+
+
+                <strong>
+
+                    ₹<span id="deliveryCharge">0</span>
+
+                </strong>
+
+            </div>
+
+
+            <div class="grand-total">
+
+                <span>
+
+                    Grand Total
+
+                </span>
+
+
+                <strong>
+
+                    ₹<span id="grandTotal">0</span>
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- PAYMENT -->
+
+        <label>
+
+            Payment Method
+
+        </label>
+
+
+        <div class="payment-options">
+
+
+            <button
+                type="button"
+                id="cashBtn"
+                class="selected"
+                onclick="selectPayment('Cash')"
+            >
+
+                💵 Cash
+
+            </button>
+
+
+            <button
+                type="button"
+                id="upiBtn"
+                onclick="selectPayment('UPI')"
+            >
+
+                📱 UPI
+
+            </button>
+
+
+        </div>
+
+
+        <input
+            type="hidden"
+            id="paymentMethod"
+            value="Cash"
+        >
+
+
+
+        <!-- UPI -->
+
+        <div
+            id="upiSection"
+            class="upi-section"
+        >
+
+            <p>
+
+                UPI ID:
+
+                <strong>
+
+                    9025611796@nyes
+
+                </strong>
+
+            </p>
+
+
+            <button
+                type="button"
+                class="upi-button"
+                onclick="payUPI()"
+            >
+
+                📱 Pay with UPI
+
+            </button>
+
+        </div>
+
+
+
+        <!-- WHATSAPP -->
+
+        <button
+            class="whatsapp-button"
+            onclick="sendWhatsAppOrder()"
+        >
+
+            📱 Send Order on WhatsApp
+
+        </button>
+
+
+    </div>
+
+</div>
+
+<!-- ================= ORDER CONFIRMATION ================= -->
+
+<div id="confirmationModal" class="confirmation-modal">
+
+    <div class="confirmation-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>Order Placed Successfully!</h2>
+
+        <p>Thank you for ordering from</p>
+
+        <h3>Kayakani Bakery & Sweets</h3>
+
+        <div class="order-id-box">
+
+            <span>Order ID</span>
+
+            <strong id="orderId">
+                KYK-000000
+            </strong>
+
+        </div>
+
+        <p class="confirmation-note">
+            Your order details have been prepared for WhatsApp.
+        </p>
+
+        <button
+            class="done-button"
+            onclick="closeConfirmation()"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+    <h3>
+
+        🍰 Kayakani Bakery & Sweets
+
+    </h3>
+
+
+    <p>
+
+        Fresh Tastes • Happy Faces
+
+    </p>
+
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
