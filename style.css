@@ -1293,3 +1293,8 @@ footer p {
 
     background: #638d32;
 }
+
+.hero h1 {
+    color: #D4AF37;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
+}
