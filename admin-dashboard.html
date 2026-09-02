@@ -253,9 +253,14 @@ function loadOrders() {
 
         const orders = [];
 
-        snapshot.forEach(function(doc) {
-            orders.push(doc.data());
-        });
+       snapshot.forEach(function(doc) {
+
+    const order = doc.data();
+
+    order.docId = doc.id;
+
+    orders.push(order);
+});
 
         orders.sort(function(a, b) {
             const timeA = a.createdAt ? a.createdAt.toMillis() : 0;
