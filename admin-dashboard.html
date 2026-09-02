@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kayakani Bakery - Admin Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fffaf0;
+            color: #173b20;
+        }
+
+        header {
+            background: #173b20;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        .logout {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            background: white;
+            color: #173b20;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #0001;
+            text-align: center;
+        }
+
+        .stat h3 {
+            margin: 0;
+            font-size: 32px;
+            color: #638d32;
+        }
+
+        .stat p {
+            margin-bottom: 0;
+            color: #777;
+        }
+
+        .orders {
+            margin-top: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #0001;
+        }
+
+        .order {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .order h3 {
+            margin-top: 0;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 7px 12px;
+            border-radius: 15px;
+            background: #e7efd9;
+            color: #173b20;
+            font-weight: bold;
+        }
+
+        .empty {
+            color: #777;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media(max-width: 700px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h2>🍰 Kayakani Admin</h2>
+
+    <button class="logout" onclick="logout()">
+        Logout
+    </button>
+
+</header>
+
+
+<div class="container">
+
+    <div class="welcome">
+
+        <h1>Admin Dashboard</h1>
+
+        <p>Manage your bakery orders from here.</p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <h3 id="orderCount">0</h3>
+
+            <p>Total Orders</p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3 id="todayOrders">0</h3>
+
+            <p>Today's Orders</p>
+
+        </div>
+
+
+        <div class="stat">
+
+            ₹<h3 id="sales">0</h3>
+
+            <p>Total Sales</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="orders">
+
+        <h2>📦 Customer Orders</h2>
+
+        <div id="ordersList">
+
+            <div class="empty">
+                No orders yet.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyCuy68o-h0dcAVO7cg183xlQnBpttp2gAs",
+
+        authDomain: "kayakani-bakery.firebaseapp.com",
+
+        projectId: "kayakani-bakery",
+
+        storageBucket: "kayakani-bakery.firebasestorage.app",
+
+        messagingSenderId: "861879891216",
+
+        appId: "1:861879891216:web:a9c91ee27859ef9ef62195"
+
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+    onAuthStateChanged(auth, function(user) {
+
+        if (!user) {
+
+            window.location.href = "admin.html";
+
+        }
+
+    });
+
+
+    window.logout = async function() {
+
+        await signOut(auth);
+
+        window.location.href = "admin.html";
+
+    };
+
+</script>
+
+</body>
+</html>
