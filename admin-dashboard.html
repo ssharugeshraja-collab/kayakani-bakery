@@ -295,7 +295,7 @@ let allOrders = [];
     
     function displayOrders(orders) {
 
-        allOrders = orders;
+        
 
     const ordersList = document.getElementById("ordersList");
 
@@ -442,23 +442,33 @@ window.updateOrderStatus = async function(orderId, newStatus) {
     }
 };
 
-    document.getElementById("searchOrders").addEventListener("input", function() {
+ document.getElementById("searchOrders").addEventListener("input", function() {
+    applyFilters();
+});
 
-    const search = this.value.toLowerCase().trim();
+document.getElementById("statusFilter").addEventListener("change", function() {
+    applyFilters();
+});
+
+function applyFilters() {
+    const search = document.getElementById("searchOrders").value.toLowerCase().trim();
+    const status = document.getElementById("statusFilter").value;
 
     const filteredOrders = allOrders.filter(function(order) {
 
-        return (
+        const matchesSearch =
             (order.name || "").toLowerCase().includes(search) ||
             (order.phone || "").toLowerCase().includes(search) ||
-            (order.orderId || "").toLowerCase().includes(search)
-        );
+            (order.orderId || "").toLowerCase().includes(search);
 
+        const matchesStatus =
+            status === "All" || order.status === status;
+
+        return matchesSearch && matchesStatus;
     });
 
     displayOrders(filteredOrders);
-
-});
+}
     
     window.logout = async function() {
 
