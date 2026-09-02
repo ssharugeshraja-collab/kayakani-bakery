@@ -188,6 +188,16 @@
     placeholder="🔍 Search by name, phone or order ID..."
     style="width:100%; padding:12px; margin:15px 0; border:1px solid #ddd; border-radius:10px; font-size:16px;"
 >
+        <select
+    id="statusFilter"
+    style="width:100%; padding:12px; margin:5px 0 15px 0; border:1px solid #ddd; border-radius:10px; font-size:16px;"
+>
+    <option value="All">📋 All Orders</option>
+    <option value="New">🆕 New</option>
+    <option value="Preparing">👨‍🍳 Preparing</option>
+    <option value="Ready">✅ Ready</option>
+    <option value="Completed">🎉 Completed</option>
+</select>
         
         <div id="ordersList">
 
