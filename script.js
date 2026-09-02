@@ -1117,7 +1117,41 @@ async function sendWhatsAppOrder() {
         "\nDelivery Charge: Rs." +
         deliveryCharge;
 
+// Save order to Firebase Firestore
+try {
+    await db.collection("orders").add({
+        orderId: orderId,
+        name: name,
+        phone: phone,
+        orderType: type,
+        address: type === "Delivery" ? address : "",
+        payment: payment,
 
+        items: cart.map(item => ({
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity
+        })),
+
+        itemsTotal: total,
+        deliveryCharge: deliveryCharge,
+        grandTotal: grandTotal,
+
+        cakeMessage: cake ? document.getElementById("cakeMessage").value.trim() : "",
+        cakeInstructions: cake ? document.getElementById("cakeInstructions").value.trim() : "",
+
+        status: "New",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    console.log("Order saved successfully!");
+
+} catch (error) {
+    console.error("Error saving order:", error);
+    alert("Unable to save the order. Please try again.");
+    return;
+}
+    
     // ================= CAKE DETAILS =================
 
     const cake =
