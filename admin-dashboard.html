@@ -346,9 +346,12 @@ function loadOrders() {
                 <p><b>Delivery:</b> ₹${order.deliveryCharge}</p>
                 <h3>Grand Total: ₹${order.grandTotal}</h3>
 
-                <span class="status">
-                    ${order.status || "New"}
-                </span>
+               <select class="status">
+                     <option ${order.status === "New" ? "selected" : ""}>New</option>
+                     <option ${order.status === "Preparing" ? "selected" : ""}>Preparing</option>
+                     <option ${order.status === "Ready" ? "selected" : ""}>Ready</option>
+                     <option ${order.status === "Completed" ? "selected" : ""}>Completed</option>
+               </select>
 
                 <p><small>${dateText}</small></p>
 
