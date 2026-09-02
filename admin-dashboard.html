@@ -287,7 +287,8 @@ function loadOrders() {
             return timeB - timeA;
         });
 
-        displayOrders(orders);
+       allOrders = orders;
+displayOrders(orders);
     });
 }
 
