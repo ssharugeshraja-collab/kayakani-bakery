@@ -827,6 +827,24 @@
 
 
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCuy68o-h0dcAVO7cg183xlQnBpttp2gAs",
+        authDomain: "kayakani-bakery.firebaseapp.com",
+        projectId: "kayakani-bakery",
+        storageBucket: "kayakani-bakery.firebasestorage.app",
+        messagingSenderId: "861879891216",
+        appId: "1:861879891216:web:a9c91ee27859ef9ef62195"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+</script>
+
 <script src="script.js"></script>
 
 
