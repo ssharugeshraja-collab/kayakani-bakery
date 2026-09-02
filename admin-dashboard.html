@@ -182,6 +182,13 @@
 
         <h2>📦 Customer Orders</h2>
 
+        <input
+    type="text"
+    id="searchOrders"
+    placeholder="🔍 Search by name, phone or order ID..."
+    style="width:100%; padding:12px; margin:15px 0; border:1px solid #ddd; border-radius:10px; font-size:16px;"
+>
+        
         <div id="ordersList">
 
             <div class="empty">
@@ -274,7 +281,11 @@ function loadOrders() {
     });
 }
 
+let allOrders = [];
+    
     function displayOrders(orders) {
+
+        allOrders = orders;
 
     const ordersList = document.getElementById("ordersList");
 
@@ -420,6 +431,24 @@ window.updateOrderStatus = async function(orderId, newStatus) {
         alert("Failed to delete order.\n\n" + error.message);
     }
 };
+
+    document.getElementById("searchOrders").addEventListener("input", function() {
+
+    const search = this.value.toLowerCase().trim();
+
+    const filteredOrders = allOrders.filter(function(order) {
+
+        return (
+            (order.name || "").toLowerCase().includes(search) ||
+            (order.phone || "").toLowerCase().includes(search) ||
+            (order.orderId || "").toLowerCase().includes(search)
+        );
+
+    });
+
+    displayOrders(filteredOrders);
+
+});
     
     window.logout = async function() {
 
