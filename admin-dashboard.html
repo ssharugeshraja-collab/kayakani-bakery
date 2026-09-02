@@ -354,6 +354,11 @@ function loadOrders() {
     <option ${order.status === "Completed" ? "selected" : ""}>Completed</option>
 </select>
 
+<button onclick="deleteOrder('${order.docId}')"
+    style="margin-top:10px; padding:8px 14px; border:none; border-radius:8px; background:#c62828; color:white; cursor:pointer;">
+    🗑️ Delete Order
+</button>
+
                 <p><small>${dateText}</small></p>
 
             </div>
