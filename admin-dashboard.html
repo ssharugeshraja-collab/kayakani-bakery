@@ -237,16 +237,33 @@ import {
     const db = getFirestore(app);
 
 
-    onAuthStateChanged(auth, function(user) {
+onAuthStateChanged(auth, function(user) {
+    if (!user) {
+        window.location.href = "admin.html";
+        return;
+    }
 
-        if (!user) {
+    loadOrders();
+});
 
-            window.location.href = "admin.html";
+function loadOrders() {
+    onSnapshot(collection(db, "orders"), function(snapshot) {
 
-        }
+        const orders = [];
 
+        snapshot.forEach(function(doc) {
+            orders.push(doc.data());
+        });
+
+        orders.sort(function(a, b) {
+            const timeA = a.createdAt ? a.createdAt.toMillis() : 0;
+            const timeB = b.createdAt ? b.createdAt.toMillis() : 0;
+            return timeB - timeA;
+        });
+
+        displayOrders(orders);
     });
-
+}
 
     window.logout = async function() {
 
