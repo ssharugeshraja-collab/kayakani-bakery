@@ -957,7 +957,7 @@ function payUPI() {
 // ================= WHATSAPP =================
 
 
-function sendWhatsAppOrder() {
+async function sendWhatsAppOrder() {
 
     const name =
         document.getElementById("customerName")
