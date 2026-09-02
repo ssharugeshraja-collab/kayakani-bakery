@@ -169,7 +169,7 @@
 
         <div class="stat">
 
-            ₹<h3 id="sales">0</h3>
+            <h3 id="sales">₹0</h3>
 
             <p>Total Sales</p>
 
@@ -262,6 +262,98 @@ function loadOrders() {
         });
 
         displayOrders(orders);
+    });
+}
+
+    function displayOrders(orders) {
+
+    const ordersList = document.getElementById("ordersList");
+
+    document.getElementById("orderCount").textContent = orders.length;
+
+    let today = new Date().toDateString();
+    let todayCount = 0;
+    let totalSales = 0;
+
+    orders.forEach(function(order) {
+
+        if (order.createdAt) {
+            const date = order.createdAt.toDate();
+
+            if (date.toDateString() === today) {
+                todayCount++;
+            }
+        }
+
+        totalSales += Number(order.grandTotal || 0);
+    });
+
+    document.getElementById("todayOrders").textContent = todayCount;
+    document.getElementById("sales").textContent = totalSales;
+
+    if (orders.length === 0) {
+        ordersList.innerHTML =
+            '<div class="empty">No orders yet.</div>';
+        return;
+    }
+
+    ordersList.innerHTML = "";
+
+    orders.forEach(function(order) {
+
+        let itemsHTML = "";
+
+        (order.items || []).forEach(function(item) {
+            itemsHTML += `
+                <div>
+                    ${item.name} × ${item.quantity}
+                    — ₹${item.price * item.quantity}
+                </div>
+            `;
+        });
+
+        let dateText = "";
+
+        if (order.createdAt) {
+            dateText = order.createdAt.toDate().toLocaleString();
+        }
+
+        ordersList.innerHTML += `
+            <div class="order">
+
+                <h3>🧾 ${order.orderId || "Order"}</h3>
+
+                <p><b>Customer:</b> ${order.name}</p>
+                <p><b>Phone:</b> ${order.phone}</p>
+                <p><b>Order Type:</b> ${order.orderType}</p>
+
+                ${
+                    order.address
+                    ? `<p><b>Address:</b> ${order.address}</p>`
+                    : ""
+                }
+
+                <p><b>Payment:</b> ${order.payment}</p>
+
+                <hr>
+
+                <b>Items:</b>
+                ${itemsHTML}
+
+                <hr>
+
+                <p><b>Items Total:</b> ₹${order.itemsTotal}</p>
+                <p><b>Delivery:</b> ₹${order.deliveryCharge}</p>
+                <h3>Grand Total: ₹${order.grandTotal}</h3>
+
+                <span class="status">
+                    ${order.status || "New"}
+                </span>
+
+                <p><small>${dateText}</small></p>
+
+            </div>
+        `;
     });
 }
 
