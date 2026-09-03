@@ -394,14 +394,18 @@ function loadOrders() {
             })) {
                 const sound = document.getElementById("notificationSound");
 
-                if (sound) {
-                    sound.currentTime = 0;
-                    sound.play().catch(function(error) {
-                        console.log("Notification sound blocked:", error);
-                    });
-                }
+               if (sound) {
+    sound.currentTime = 0;
+    sound.play()
+        .then(function() {
+            console.log("🔊 Notification sound played");
+        })
+        .catch(function(error) {
+            console.log("Sound blocked:", error);
+        });
+}
 
-                alert("🔔 New Order Received!");
+alert("🔔 New Order Received!");
             }
 
             firstLoad = false;
