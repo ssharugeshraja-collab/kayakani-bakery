@@ -278,9 +278,11 @@
 
 </div>
 
+ <audio id="notificationSound" src="notification.mp3" preload="auto"></audio>
 
+<script type="module">  
 
-<script type="module">
+   
 
 
     /* =========================
@@ -376,14 +378,33 @@
        LOAD ORDERS
     ========================= */
 
-    function loadOrders() {
+function loadOrders() {
 
-        onSnapshot(
-            collection(db, "orders"),
+    let firstLoad = true;
 
-            function(snapshot) {
+    onSnapshot(
+        collection(db, "orders"),
 
-                const orders = [];
+        function(snapshot) {
+
+            const orders = [];
+
+            if (!firstLoad && snapshot.docChanges().some(function(change) {
+                return change.type === "added";
+            })) {
+                const sound = document.getElementById("notificationSound");
+
+                if (sound) {
+                    sound.currentTime = 0;
+                    sound.play().catch(function(error) {
+                        console.log("Notification sound blocked:", error);
+                    });
+                }
+
+                alert("🔔 New Order Received!");
+            }
+
+            firstLoad = false;
 
 
                 snapshot.forEach(function(firebaseDoc) {
