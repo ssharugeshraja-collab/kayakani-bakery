@@ -1,6 +1,6 @@
 // ==================================================
 // KAYAKANI BAKERY & SWEETS
-// COMPLETE ORDERING SYSTEM + FIRESTORE
+// COMPLETE ORDERING SYSTEM + FIRESTORE + PRODUCT IMAGES
 // ==================================================
 
 
@@ -13,19 +13,22 @@ const products = [
         name: "Tea Parcel",
         price: 40,
         category: "tea",
-        icon: "☕"
+        icon: "☕",
+        image: "images/tea.png"
     },
     {
         name: "Coffee Parcel",
         price: 40,
         category: "tea",
-        icon: "☕"
+        icon: "☕",
+        image: "images/coffe.png"
     },
     {
         name: "Black Tea Parcel",
         price: 40,
         category: "tea",
-        icon: "🍵"
+        icon: "🍵",
+        image: "images/black tea.png"
     },
 
     // SNACKS
@@ -33,43 +36,50 @@ const products = [
         name: "Vada",
         price: 10,
         category: "snacks",
-        icon: "🥨"
+        icon: "🥨",
+        image: "images/vada.png"
     },
     {
         name: "Samosa",
         price: 10,
         category: "snacks",
-        icon: "🥟"
+        icon: "🥟",
+        image: "images/samosa.png"
     },
     {
         name: "Bonda",
         price: 10,
         category: "snacks",
-        icon: "🟤"
+        icon: "🟤",
+        image: "images/bonda.png"
     },
     {
         name: "Bajji",
         price: 10,
         category: "snacks",
-        icon: "🥞"
+        icon: "🥞",
+        image: "images/bajji.png"
     },
     {
         name: "Veg Puff",
         price: 20,
         category: "snacks",
-        icon: "🥐"
+        icon: "🥐",
+        image: "images/veg puff.png"
     },
     {
         name: "Egg Puff",
         price: 30,
         category: "snacks",
-        icon: "🥚"
+        icon: "🥚",
+        image: "images/egg puff.png"
     },
     {
         name: "Mushroom Puff",
         price: 30,
         category: "snacks",
-        icon: "🍄"
+        icon: "🍄",
+        image: "images/mushroom puff.png"
     },
 
     // BUNS & BREAD
@@ -77,19 +87,22 @@ const products = [
         name: "Cream Bun",
         price: 25,
         category: "bread",
-        icon: "🍞"
+        icon: "🍞",
+        image: "images/creambun.png"
     },
     {
         name: "Tea Bun",
         price: 10,
         category: "bread",
-        icon: "🥯"
+        icon: "🥯",
+        image: "images/teabun.png"
     },
     {
         name: "Bread",
         price: 45,
         category: "bread",
-        icon: "🍞"
+        icon: "🍞",
+        image: "images/bread.png"
     },
 
     // MIXTURE
@@ -97,25 +110,29 @@ const products = [
         name: "Mixture - 100g",
         price: 40,
         category: "mixture",
-        icon: "🥜"
+        icon: "🥜",
+        image: "images/mixture-100g.png"
     },
     {
         name: "Mixture - 250g",
         price: 90,
         category: "mixture",
-        icon: "🥜"
+        icon: "🥜",
+        image: "images/mixture-250g.png"
     },
     {
         name: "Mixture - 500g",
         price: 170,
         category: "mixture",
-        icon: "🥜"
+        icon: "🥜",
+        image: "images/mixture-500g.png"
     },
     {
         name: "Sevu - 100g",
         price: 40,
         category: "mixture",
-        icon: "🥜"
+        icon: "🥜",
+        image: "images/sevu-100g.png"
     },
 
     // SWEETS
@@ -123,13 +140,15 @@ const products = [
         name: "Normal Sweets - 250g",
         price: 150,
         category: "sweets",
-        icon: "🍬"
+        icon: "🍬",
+        image: "images/normal sweets-250g.png"
     },
     {
         name: "Milk Sweets - 250g",
         price: 250,
         category: "sweets",
-        icon: "🍬"
+        icon: "🍬",
+        image: "images/milk sweets.png"
     },
 
     // DRINKS
@@ -137,25 +156,29 @@ const products = [
         name: "Coke",
         price: 20,
         category: "drinks",
-        icon: "🥤"
+        icon: "🥤",
+        image: "images/coke.png"
     },
     {
         name: "Juice",
         price: 20,
         category: "drinks",
-        icon: "🧃"
+        icon: "🧃",
+        image: "images/juice.png"
     },
     {
         name: "Rose Milk",
         price: 50,
         category: "drinks",
-        icon: "🥛"
+        icon: "🥛",
+        image: "images/rosemilk.png"
     },
     {
         name: "Badam Milk",
         price: 50,
         category: "drinks",
-        icon: "🥛"
+        icon: "🥛",
+        image: "images/badammilk.png"
     },
 
     // CAKES & BISCUITS
@@ -163,37 +186,43 @@ const products = [
         name: "Biscuits",
         price: 30,
         category: "cakes",
-        icon: "🍪"
+        icon: "🍪",
+        image: "images/biscuits.png"
     },
     {
         name: "Brownie",
         price: 50,
         category: "cakes",
-        icon: "🍫"
+        icon: "🍫",
+        image: "images/bronine.png"
     },
     {
         name: "Honey Cake",
         price: 70,
         category: "cakes",
-        icon: "🍯"
+        icon: "🍯",
+        image: "images/honey cake.png"
     },
     {
         name: "Pudding Cake",
         price: 60,
         category: "cakes",
-        icon: "🍰"
+        icon: "🍰",
+        image: "images/pudding cake.png"
     },
     {
         name: "Banana Cake",
         price: 70,
         category: "cakes",
-        icon: "🍌"
+        icon: "🍌",
+        image: "images/banana cake.png"
     },
     {
         name: "0.5 kg Birthday Cake",
         price: 450,
         category: "cakes",
         icon: "🎂",
+        image: "images/brithday cake(0.5kg).png",
         cake: true
     }
 ];
@@ -222,7 +251,26 @@ function displayProducts(list = products) {
             <div class="product">
 
                 <div class="product-icon">
-                    ${product.icon}
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        style="
+                            width:100%;
+                            height:160px;
+                            object-fit:cover;
+                            border-radius:10px;
+                        "
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span style="display:none;">
+                        ${product.icon}
+                    </span>
+
                 </div>
 
                 <h3>
@@ -354,9 +402,36 @@ function updateCart() {
         totalPrice += itemTotal;
 
         cartItems.innerHTML += `
-            <div class="cart-item">
+            <div
+                class="cart-item"
+                style="
+                    display:flex;
+                    align-items:center;
+                    gap:12px;
+                    padding:10px 0;
+                "
+            >
 
-                <div>
+                <!-- PRODUCT IMAGE -->
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                    style="
+                        width:65px;
+                        height:65px;
+                        object-fit:cover;
+                        border-radius:10px;
+                        flex-shrink:0;
+                    "
+                    onerror="this.style.display='none';"
+                >
+
+
+                <!-- PRODUCT NAME AND PRICE -->
+
+                <div style="flex:1;">
+
                     <strong>
                         ${item.name}
                     </strong>
@@ -364,7 +439,11 @@ function updateCart() {
                     <br>
 
                     ₹${item.price}
+
                 </div>
+
+
+                <!-- QUANTITY -->
 
                 <div class="quantity">
 
