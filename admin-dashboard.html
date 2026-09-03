@@ -163,7 +163,6 @@
 
 <body>
 
-
 <header>
 
     <h2>🍰 Kayakani Admin</h2>
@@ -177,7 +176,6 @@
 
 <div class="container">
 
-
     <div class="welcome">
 
         <h1>Admin Dashboard</h1>
@@ -190,7 +188,6 @@
     <!-- STATS -->
 
     <div class="stats">
-
 
         <div class="stat">
 
@@ -218,15 +215,12 @@
 
         </div>
 
-
     </div>
-
 
 
     <!-- ORDERS -->
 
     <div class="orders">
-
 
         <h2>📦 Customer Orders</h2>
 
@@ -261,7 +255,6 @@
         </select>
 
 
-
         <!-- ORDER LIST -->
 
         <div id="ordersList">
@@ -272,17 +265,21 @@
 
         </div>
 
-
     </div>
-
 
 </div>
 
- <audio id="notificationSound" src="notification.mp3" preload="auto"></audio>
 
-<script type="module">  
+<!-- NOTIFICATION SOUND -->
 
-   
+<audio
+    id="notificationSound"
+    src="notification.mp3"
+    preload="auto">
+</audio>
+
+
+<script type="module">
 
 
     /* =========================
@@ -311,7 +308,6 @@
     } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-
     /* =========================
        FIREBASE CONFIG
     ========================= */
@@ -333,7 +329,6 @@
     };
 
 
-
     /* =========================
        FIREBASE INITIALIZE
     ========================= */
@@ -345,13 +340,11 @@
     const db = getFirestore(app);
 
 
-
     /* =========================
        ALL ORDERS
     ========================= */
 
     let allOrders = [];
-
 
 
     /* =========================
@@ -373,56 +366,111 @@
     });
 
 
-
     /* =========================
        LOAD ORDERS
     ========================= */
 
-function loadOrders() {
+    function loadOrders() {
 
-    let firstLoad = true;
+        /*
+         * This prevents an alert when the dashboard
+         * is opened or refreshed.
+         */
 
-    onSnapshot(
-        collection(db, "orders"),
+        let firstLoad = true;
 
-        function(snapshot) {
 
-            const orders = [];
+        onSnapshot(
+            collection(db, "orders"),
 
-            if (!firstLoad && snapshot.docChanges().some(function(change) {
-                return change.type === "added";
-            })) {
-                const sound = document.getElementById("notificationSound");
+            function(snapshot) {
 
-               if (sound) {
-    sound.currentTime = 0;
-    sound.play()
-        .then(function() {
-            console.log("🔊 Notification sound played");
-        })
-        .catch(function(error) {
-            console.log("Sound blocked:", error);
-        });
-}
+                const orders = [];
 
-alert("🔔 New Order Received!");
-            }
 
-            firstLoad = false;
+                /* =========================
+                   NEW ORDER DETECTION
+                ========================= */
 
+                if (!firstLoad) {
+
+                    snapshot.docChanges().forEach(function(change) {
+
+                        if (change.type === "added") {
+
+                            const sound =
+                                document.getElementById(
+                                    "notificationSound"
+                                );
+
+
+                            /* PLAY SOUND */
+
+                            if (sound) {
+
+                                sound.currentTime = 0;
+
+                                sound.play()
+                                    .then(function() {
+
+                                        console.log(
+                                            "🔊 Notification sound played"
+                                        );
+
+                                    })
+                                    .catch(function(error) {
+
+                                        console.log(
+                                            "Sound blocked:",
+                                            error
+                                        );
+
+                                    });
+
+                            }
+
+
+                            /* SHOW ALERT */
+
+                            alert(
+                                "🔔 New Order Received!"
+                            );
+
+                        }
+
+                    });
+
+                }
+
+
+                /*
+                 * After the first Firestore load,
+                 * future added documents are real new orders.
+                 */
+
+                firstLoad = false;
+
+
+                /* =========================
+                   GET ALL ORDERS
+                ========================= */
 
                 snapshot.forEach(function(firebaseDoc) {
 
-                    const order = firebaseDoc.data();
+                    const order =
+                        firebaseDoc.data();
 
-                    order.docId = firebaseDoc.id;
+                    order.docId =
+                        firebaseDoc.id;
 
                     orders.push(order);
 
                 });
 
 
-                /* SORT NEWEST FIRST */
+                /* =========================
+                   SORT NEWEST FIRST
+                ========================= */
 
                 orders.sort(function(a, b) {
 
@@ -446,11 +494,16 @@ alert("🔔 New Order Received!");
                 allOrders = orders;
 
 
-                /* DISPLAY ALL */
+                /* DISPLAY */
 
                 filterOrders();
 
             },
+
+
+            /* =========================
+               FIREBASE ERROR
+            ========================= */
 
             function(error) {
 
@@ -465,10 +518,10 @@ alert("🔔 New Order Received!");
                     '<div class="empty">Unable to load orders.</div>';
 
             }
+
         );
 
     }
-
 
 
     /* =========================
@@ -476,7 +529,6 @@ alert("🔔 New Order Received!");
     ========================= */
 
     function displayOrders(orders) {
-
 
         const ordersList =
             document.getElementById(
@@ -488,10 +540,11 @@ alert("🔔 New Order Received!");
 
         document.getElementById(
             "orderCount"
-        ).textContent = orders.length;
+        ).textContent =
+            orders.length;
 
 
-        let today =
+        const today =
             new Date().toDateString();
 
 
@@ -501,7 +554,6 @@ alert("🔔 New Order Received!");
 
 
         orders.forEach(function(order) {
-
 
             if (order.createdAt) {
 
@@ -540,7 +592,6 @@ alert("🔔 New Order Received!");
             "₹" + totalSales;
 
 
-
         /* NO ORDERS */
 
         if (orders.length === 0) {
@@ -556,11 +607,9 @@ alert("🔔 New Order Received!");
         ordersList.innerHTML = "";
 
 
-
         /* DISPLAY ORDERS */
 
         orders.forEach(function(order) {
-
 
             let itemsHTML = "";
 
@@ -581,7 +630,6 @@ alert("🔔 New Order Received!");
             );
 
 
-
             /* DATE */
 
             let dateText = "";
@@ -597,13 +645,11 @@ alert("🔔 New Order Received!");
             }
 
 
-
             /* ORDER CARD */
 
             ordersList.innerHTML += `
 
                 <div class="order">
-
 
                     <h3>
                         🧾 ${order.orderId || "Order"}
@@ -675,7 +721,6 @@ alert("🔔 New Order Received!");
                     </h3>
 
 
-
                     <!-- STATUS -->
 
                     <select
@@ -709,8 +754,7 @@ alert("🔔 New Order Received!");
                     </select>
 
 
-
-                    <!-- PRINT BUTTON -->
+                    <!-- PRINT -->
 
                     <button
                         class="print-button"
@@ -720,8 +764,7 @@ alert("🔔 New Order Received!");
                     </button>
 
 
-
-                    <!-- DELETE BUTTON -->
+                    <!-- DELETE -->
 
                     <button
                         class="delete-button"
@@ -747,9 +790,8 @@ alert("🔔 New Order Received!");
     }
 
 
-
     /* =========================
-       SEARCH + STATUS FILTER
+       SEARCH
     ========================= */
 
     document
@@ -764,6 +806,10 @@ alert("🔔 New Order Received!");
         );
 
 
+    /* =========================
+       STATUS FILTER
+    ========================= */
+
     document
         .getElementById("statusFilter")
         .addEventListener(
@@ -776,9 +822,7 @@ alert("🔔 New Order Received!");
         );
 
 
-
     function filterOrders() {
-
 
         const searchText =
             document
@@ -801,7 +845,6 @@ alert("🔔 New Order Received!");
         const filteredOrders =
             allOrders.filter(
                 function(order) {
-
 
                     const name =
                         String(
@@ -827,21 +870,15 @@ alert("🔔 New Order Received!");
 
                     const searchMatch =
 
-                        name.includes(
-                            searchText
-                        )
+                        name.includes(searchText)
 
                         ||
 
-                        phone.includes(
-                            searchText
-                        )
+                        phone.includes(searchText)
 
                         ||
 
-                        orderId.includes(
-                            searchText
-                        );
+                        orderId.includes(searchText);
 
 
                     const statusMatch =
@@ -870,14 +907,12 @@ alert("🔔 New Order Received!");
     }
 
 
-
     /* =========================
        PRINT ORDER
     ========================= */
 
     window.printOrder =
         function(orderId) {
-
 
             const order =
                 allOrders.find(
@@ -898,7 +933,6 @@ alert("🔔 New Order Received!");
             }
 
 
-
             let itemsHTML = "";
 
 
@@ -909,17 +943,11 @@ alert("🔔 New Order Received!");
 
                         <tr>
 
-                            <td>
-                                ${item.name}
-                            </td>
+                            <td>${item.name}</td>
 
-                            <td>
-                                ${item.quantity}
-                            </td>
+                            <td>${item.quantity}</td>
 
-                            <td>
-                                ₹${item.price}
-                            </td>
+                            <td>₹${item.price}</td>
 
                             <td>
                                 ₹${Number(item.price) * Number(item.quantity)}
@@ -933,7 +961,6 @@ alert("🔔 New Order Received!");
             );
 
 
-
             let dateText = "";
 
 
@@ -945,7 +972,6 @@ alert("🔔 New Order Received!");
                         .toLocaleString();
 
             }
-
 
 
             const printWindow =
@@ -971,101 +997,58 @@ alert("🔔 New Order Received!");
                     <style>
 
                         body {
-
                             font-family: Arial, sans-serif;
-
                             padding: 30px;
-
                             color: #222;
-
                         }
-
 
                         .receipt {
-
                             max-width: 700px;
-
                             margin: auto;
-
                         }
-
 
                         h1 {
-
                             text-align: center;
-
                             margin-bottom: 5px;
-
                         }
-
 
                         .shop {
-
                             text-align: center;
-
                             color: #555;
-
                             margin-bottom: 25px;
-
                         }
-
 
                         hr {
-
                             border: none;
-
                             border-top: 1px solid #ccc;
-
                             margin: 15px 0;
-
                         }
-
 
                         table {
-
                             width: 100%;
-
                             border-collapse: collapse;
-
                             margin-top: 15px;
-
                         }
-
 
                         th,
                         td {
-
                             border: 1px solid #ddd;
-
                             padding: 8px;
-
                             text-align: left;
-
                         }
-
 
                         th {
-
                             background: #f5f5f5;
-
                         }
-
 
                         .total {
-
                             text-align: right;
-
                             font-size: 18px;
-
                             font-weight: bold;
-
                         }
 
-
                         .center {
-
                             text-align: center;
-
                         }
 
                     </style>
@@ -1077,11 +1060,9 @@ alert("🔔 New Order Received!");
 
                     <div class="receipt">
 
-
                         <h1>
                             🍰 Kayakani Bakery & Sweets
                         </h1>
-
 
                         <div class="shop">
 
@@ -1091,39 +1072,32 @@ alert("🔔 New Order Received!");
 
                         </div>
 
-
                         <hr>
-
 
                         <p>
                             <b>Order ID:</b>
                             ${order.orderId || ""}
                         </p>
 
-
                         <p>
                             <b>Date:</b>
                             ${dateText}
                         </p>
-
 
                         <p>
                             <b>Customer:</b>
                             ${order.name || ""}
                         </p>
 
-
                         <p>
                             <b>Phone:</b>
                             ${order.phone || ""}
                         </p>
 
-
                         <p>
                             <b>Order Type:</b>
                             ${order.orderType || ""}
                         </p>
-
 
                         ${
                             order.address
@@ -1136,58 +1110,39 @@ alert("🔔 New Order Received!");
                             ""
                         }
 
-
                         <p>
                             <b>Payment:</b>
                             ${order.payment || ""}
                         </p>
 
-
                         <hr>
-
 
                         <table>
 
                             <tr>
 
-                                <th>
-                                    Item
-                                </th>
-
-                                <th>
-                                    Qty
-                                </th>
-
-                                <th>
-                                    Price
-                                </th>
-
-                                <th>
-                                    Total
-                                </th>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Total</th>
 
                             </tr>
-
 
                             ${itemsHTML}
 
                         </table>
 
-
                         <hr>
-
 
                         <p>
                             <b>Items Total:</b>
                             ₹${order.itemsTotal || 0}
                         </p>
 
-
                         <p>
                             <b>Delivery:</b>
                             ₹${order.deliveryCharge || 0}
                         </p>
-
 
                         <p class="total">
 
@@ -1196,16 +1151,11 @@ alert("🔔 New Order Received!");
 
                         </p>
 
-
                         <hr>
 
-
                         <p class="center">
-
                             Thank you for ordering! ❤️
-
                         </p>
-
 
                     </div>
 
@@ -1217,7 +1167,6 @@ alert("🔔 New Order Received!");
 
 
             printWindow.document.close();
-
 
             printWindow.focus();
 
@@ -1234,7 +1183,6 @@ alert("🔔 New Order Received!");
         };
 
 
-
     /* =========================
        UPDATE ORDER STATUS
     ========================= */
@@ -1245,9 +1193,7 @@ alert("🔔 New Order Received!");
             newStatus
         ) {
 
-
             try {
-
 
                 const orderRef =
                     doc(
@@ -1269,10 +1215,9 @@ alert("🔔 New Order Received!");
                     "Status saved successfully"
                 );
 
-
             }
-            catch (error) {
 
+            catch (error) {
 
                 console.error(
                     "Firebase error:",
@@ -1290,14 +1235,12 @@ alert("🔔 New Order Received!");
         };
 
 
-
     /* =========================
        DELETE ORDER
     ========================= */
 
     window.deleteOrder =
         async function(orderId) {
-
 
             const confirmDelete =
                 confirm(
@@ -1314,7 +1257,6 @@ alert("🔔 New Order Received!");
 
             try {
 
-
                 await deleteDoc(
                     doc(
                         db,
@@ -1328,10 +1270,9 @@ alert("🔔 New Order Received!");
                     "Order deleted successfully."
                 );
 
-
             }
-            catch (error) {
 
+            catch (error) {
 
                 console.error(
                     "Delete error:",
@@ -1349,7 +1290,6 @@ alert("🔔 New Order Received!");
         };
 
 
-
     /* =========================
        LOGOUT
     ========================= */
@@ -1357,9 +1297,7 @@ alert("🔔 New Order Received!");
     window.logout =
         async function() {
 
-
             await signOut(auth);
-
 
             window.location.href =
                 "admin.html";
