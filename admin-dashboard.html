@@ -6,9 +6,10 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Kayakani Bakery - Admin Login</title>
+    <title>Kayakani Bakery - Admin Dashboard</title>
+
 
     <style>
 
@@ -16,43 +17,140 @@
             box-sizing: border-box;
         }
 
+
         body {
 
             margin: 0;
 
             font-family: Arial, sans-serif;
 
-            background: #fffaf0;
+            background: #f5f7f2;
+
+            color: #222;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            background: #173b20;
+
+            color: white;
+
+            padding: 18px 25px;
 
             display: flex;
 
-            justify-content: center;
+            justify-content: space-between;
 
             align-items: center;
 
-            min-height: 100vh;
+            flex-wrap: wrap;
+
+            gap: 10px;
 
         }
 
-        .login-box {
 
-            width: 90%;
+        header h1 {
 
-            max-width: 400px;
+            margin: 0;
+
+            font-size: 24px;
+
+        }
+
+
+        .logout-button {
 
             background: white;
 
-            padding: 35px;
+            color: #173b20;
 
-            border-radius: 20px;
+            border: none;
 
-            box-shadow: 0 10px 30px #0002;
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            cursor: pointer;
 
         }
 
-        .logo {
 
-            text-align: center;
+        .logout-button:hover {
+
+            background: #ddd;
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            width: 95%;
+
+            max-width: 1200px;
+
+            margin: 25px auto;
+
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .stat {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 3px 10px #0001;
+
+        }
+
+
+        .stat h3 {
+
+            margin: 0 0 10px;
+
+            color: #666;
+
+            font-size: 15px;
+
+        }
+
+
+        .stat p {
+
+            margin: 0;
 
             font-size: 28px;
 
@@ -62,21 +160,108 @@
 
         }
 
-        .subtitle {
 
-            text-align: center;
+        /* =========================
+           SECTIONS
+        ========================= */
 
-            color: #777;
+        .section {
 
-            margin-bottom: 30px;
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+
+            box-shadow: 0 3px 10px #0001;
 
         }
 
-        label {
 
-            display: block;
+        .section h2 {
 
-            margin: 15px 0 7px;
+            margin-top: 0;
+
+            color: #173b20;
+
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .controls {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .controls input,
+        .controls select {
+
+            padding: 11px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+        }
+
+
+        .controls input {
+
+            flex: 1;
+
+            min-width: 220px;
+
+        }
+
+
+        /* =========================
+           ORDERS
+        ========================= */
+
+        .order-card {
+
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 15px;
+
+            background: #fff;
+
+        }
+
+
+        .order-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .order-id {
 
             font-weight: bold;
 
@@ -84,37 +269,160 @@
 
         }
 
-        input {
 
-            width: 100%;
+        .order-date {
 
-            padding: 13px;
+            color: #777;
 
-            border: 1px solid #ccc;
-
-            border-radius: 10px;
-
-            font-size: 15px;
+            font-size: 13px;
 
         }
 
-        .login-button {
 
-            width: 100%;
+        .customer {
 
-            margin-top: 25px;
+            margin-top: 12px;
 
-            padding: 14px;
+            line-height: 1.6;
+
+        }
+
+
+        .items {
+
+            margin-top: 12px;
+
+            background: #f7f7f7;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+        }
+
+
+        .item-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 5px 0;
+
+        }
+
+
+        .order-total {
+
+            margin-top: 12px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #173b20;
+
+        }
+
+
+        .order-actions {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            margin-top: 15px;
+
+        }
+
+
+        .order-actions button {
 
             border: none;
 
-            border-radius: 10px;
+            padding: 9px 12px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        .status-select {
+
+            padding: 9px;
+
+            border-radius: 7px;
+
+            border: 1px solid #ccc;
+
+        }
+
+
+        .delete-btn {
+
+            background: #d9534f;
+
+            color: white;
+
+        }
+
+
+        .print-btn {
 
             background: #173b20;
 
             color: white;
 
-            font-size: 16px;
+        }
+
+
+        /* =========================
+           PRODUCT FORM
+        ========================= */
+
+        .product-form {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 12px;
+
+        }
+
+
+        .product-form input,
+        .product-form select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+        }
+
+
+        .product-form button {
+
+            background: #173b20;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px;
+
+            border-radius: 8px;
 
             font-weight: bold;
 
@@ -122,17 +430,200 @@
 
         }
 
-        .login-button:hover {
 
-            background: #638d32;
+        .cancel-edit {
+
+            background: #777 !important;
 
         }
 
-        #message {
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 15px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .product-card {
+
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            background: white;
+
+        }
+
+
+        .product-image {
+
+            width: 100%;
+
+            height: 150px;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+            background: #f7f7f7;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .product-name {
+
+            font-weight: bold;
+
+            font-size: 17px;
+
+            color: #173b20;
+
+        }
+
+
+        .product-price {
+
+            margin-top: 5px;
+
+            font-weight: bold;
+
+        }
+
+
+        .product-category {
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+
+        }
+
+
+        .available {
+
+            color: green;
+
+            font-weight: bold;
+
+        }
+
+
+        .unavailable {
+
+            color: red;
+
+            font-weight: bold;
+
+        }
+
+
+        .product-actions {
+
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+
+            margin-top: 12px;
+
+        }
+
+
+        .product-actions button {
+
+            border: none;
+
+            padding: 8px 10px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        .edit-btn {
+
+            background: #f0ad4e;
+
+            color: white;
+
+        }
+
+
+        .availability-btn {
+
+            background: #638d32;
+
+            color: white;
+
+        }
+
+
+        .product-delete {
+
+            background: #d9534f;
+
+            color: white;
+
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
 
             text-align: center;
 
-            margin-top: 15px;
+            padding: 30px;
+
+            color: #777;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                text-align: center;
+
+                justify-content: center;
+
+            }
+
+            header h1 {
+
+                width: 100%;
+
+            }
 
         }
 
@@ -144,86 +635,297 @@
 <body>
 
 
-<div class="login-box">
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
+<header>
 
-    <div class="logo">
-
-        🍰 Kayakani
-
-    </div>
-
-
-    <div class="subtitle">
-
-        Bakery & Sweets<br>
-
-        <strong>Admin Login</strong>
-
-    </div>
-
-
-    <label>
-
-        Email
-
-    </label>
-
-
-    <input
-
-        type="email"
-
-        id="email"
-
-        placeholder="Enter admin email"
-
-    >
-
-
-    <label>
-
-        Password
-
-    </label>
-
-
-    <input
-
-        type="password"
-
-        id="password"
-
-        placeholder="Enter password"
-
-    >
+    <h1>
+        🍰 Kayakani Bakery Admin
+    </h1>
 
 
     <button
-
-        class="login-button"
-
-        onclick="login()"
-
+        class="logout-button"
+        onclick="logout()"
     >
-
-        🔐 Login
-
+        Logout
     </button>
 
+</header>
 
-    <p id="message"></p>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<div class="stats">
+
+
+    <div class="stat">
+
+        <h3>
+            Total Orders
+        </h3>
+
+        <p id="totalOrders">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h3>
+            Pending
+        </h3>
+
+        <p id="pendingOrders">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h3>
+            Completed
+        </h3>
+
+        <p id="completedOrders">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h3>
+            Total Sales
+        </h3>
+
+        <p id="totalSales">
+            ₹0
+        </p>
+
+    </div>
 
 
 </div>
 
 
 
+<!-- =====================================================
+     ORDERS
+===================================================== -->
+
+<div class="section">
+
+
+    <h2>
+        📦 Customer Orders
+    </h2>
+
+
+    <div class="controls">
+
+
+        <input
+            type="text"
+            id="searchOrders"
+            placeholder="Search customer or order..."
+            oninput="filterOrders()"
+        >
+
+
+        <select
+            id="statusFilter"
+            onchange="filterOrders()"
+        >
+
+            <option value="all">
+                All Orders
+            </option>
+
+            <option value="Pending">
+                Pending
+            </option>
+
+            <option value="Confirmed">
+                Confirmed
+            </option>
+
+            <option value="Preparing">
+                Preparing
+            </option>
+
+            <option value="Ready">
+                Ready
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+            <option value="Cancelled">
+                Cancelled
+            </option>
+
+        </select>
+
+
+    </div>
+
+
+    <div id="ordersList">
+
+        <div class="empty">
+            Loading orders...
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     PRODUCT MANAGEMENT
+===================================================== -->
+
+<div class="section">
+
+
+    <h2 id="productFormTitle">
+        ➕ Add New Product
+    </h2>
+
+
+    <div class="product-form">
+
+
+        <input
+            type="text"
+            id="productName"
+            placeholder="Product name"
+        >
+
+
+        <input
+            type="number"
+            id="productPrice"
+            placeholder="Price"
+        >
+
+
+        <select id="productCategory">
+
+            <option value="">
+                Select category
+            </option>
+
+            <option value="tea">
+                Tea & Coffee
+            </option>
+
+            <option value="snacks">
+                Snacks
+            </option>
+
+            <option value="bread">
+                Buns & Bread
+            </option>
+
+            <option value="mixture">
+                Mixture & Savouries
+            </option>
+
+            <option value="sweets">
+                Sweets
+            </option>
+
+            <option value="drinks">
+                Drinks
+            </option>
+
+            <option value="cakes">
+                Cakes
+            </option>
+
+        </select>
+
+
+        <input
+            type="text"
+            id="productImage"
+            placeholder="Image path e.g. images/vada.png"
+        >
+
+
+        <button
+            id="productSubmitButton"
+            onclick="saveProduct()"
+        >
+            ➕ Add Product
+        </button>
+
+
+        <button
+            id="cancelEditButton"
+            class="cancel-edit"
+            onclick="cancelEdit()"
+            style="display:none;"
+        >
+            Cancel Edit
+        </button>
+
+
+    </div>
+
+
+    <div
+        id="productMessage"
+        style="margin-top:12px;"
+    ></div>
+
+
+    <div
+        id="productsList"
+        class="products-list"
+    >
+
+        <div class="empty">
+            Loading products...
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
 <script type="module">
 
 
 /* =====================================================
-   FIREBASE IMPORTS
+   IMPORT FIREBASE
 ===================================================== */
 
 import {
@@ -239,15 +941,36 @@ import {
 
     getAuth,
 
-    signInWithEmailAndPassword,
+    onAuthStateChanged,
 
-    setPersistence,
-
-    browserLocalPersistence
+    signOut
 
 } from
 
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+
+    getFirestore,
+
+    collection,
+
+    onSnapshot,
+
+    doc,
+
+    updateDoc,
+
+    deleteDoc,
+
+    addDoc,
+
+    serverTimestamp
+
+} from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
 
@@ -280,7 +1003,7 @@ const firebaseConfig = {
 
 
 /* =====================================================
-   INITIALIZE FIREBASE
+   INITIALIZE
 ===================================================== */
 
 const app =
@@ -291,165 +1014,1680 @@ const auth =
     getAuth(app);
 
 
+const db =
+    getFirestore(app);
+
+
 
 /* =====================================================
-   LOGIN FUNCTION
+   VARIABLES
 ===================================================== */
 
-window.login = async function() {
+let allOrders = [];
+
+let allProducts = [];
+
+let editingProductId = null;
+
+let authChecked = false;
 
 
-    const email =
+
+/* =====================================================
+   AUTHENTICATION
+===================================================== */
+
+onAuthStateChanged(
+
+    auth,
+
+    function(user) {
+
+
+        if (user) {
+
+
+            console.log(
+                "✅ Admin logged in:",
+                user.email
+            );
+
+
+            authChecked = true;
+
+
+            loadOrders();
+
+            loadProducts();
+
+
+        }
+
+        else {
+
+
+            console.log(
+                "⏳ Checking login session..."
+            );
+
+
+            setTimeout(
+
+                function() {
+
+
+                    if (!authChecked) {
+
+
+                        console.log(
+                            "❌ No admin session found."
+                        );
+
+
+                        window.location.replace(
+                            "admin.html"
+                        );
+
+
+                    }
+
+                },
+
+                3000
+
+            );
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================================
+   LOAD ORDERS
+===================================================== */
+
+function loadOrders() {
+
+
+    const ordersRef =
+        collection(db, "orders");
+
+
+    onSnapshot(
+
+        ordersRef,
+
+        function(snapshot) {
+
+
+            allOrders = [];
+
+
+            snapshot.forEach(
+
+                function(item) {
+
+
+                    allOrders.push({
+
+                        id: item.id,
+
+                        ...item.data()
+
+                    });
+
+                }
+
+            );
+
+
+            allOrders.sort(
+
+                function(a, b) {
+
+                    return getTime(b) -
+                           getTime(a);
+
+                }
+
+            );
+
+
+            displayOrders();
+
+            updateStats();
+
+        },
+
+        function(error) {
+
+            console.error(
+                "Orders error:",
+                error
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   ORDER TIME
+===================================================== */
+
+function getTime(order) {
+
+
+    if (
+        order.createdAt &&
+        order.createdAt.toDate
+    ) {
+
+        return order.createdAt
+                   .toDate()
+                   .getTime();
+
+    }
+
+
+    if (
+        order.createdAt &&
+        order.createdAt.seconds
+    ) {
+
+        return order.createdAt.seconds *
+               1000;
+
+    }
+
+
+    return 0;
+
+}
+
+
+
+/* =====================================================
+   DISPLAY ORDERS
+===================================================== */
+
+function displayOrders() {
+
+
+    const container =
+        document.getElementById(
+            "ordersList"
+        );
+
+
+    const search =
         document
-        .getElementById("email")
+        .getElementById(
+            "searchOrders"
+        )
         .value
-        .trim();
+        .toLowerCase();
 
 
-    const password =
+    const status =
         document
-        .getElementById("password")
+        .getElementById(
+            "statusFilter"
+        )
         .value;
 
 
-    const message =
-        document
-        .getElementById("message");
+    const filtered =
+        allOrders.filter(
+
+            function(order) {
 
 
+                const customer =
+                    String(
+                        order.customerName ||
+                        order.name ||
+                        ""
+                    ).toLowerCase();
 
-    /* =========================
-       CHECK EMPTY FIELDS
-    ========================= */
 
-    if (
-        email === "" ||
-        password === ""
-    ) {
+                const phone =
+                    String(
+                        order.phone ||
+                        ""
+                    ).toLowerCase();
 
-        message.style.color =
-            "red";
 
-        message.innerText =
-            "Please enter email and password.";
+                const id =
+                    order.id.toLowerCase();
+
+
+                const matchesSearch =
+
+                    customer.includes(search) ||
+
+                    phone.includes(search) ||
+
+                    id.includes(search);
+
+
+                const orderStatus =
+                    order.status ||
+                    "Pending";
+
+
+                const matchesStatus =
+
+                    status === "all" ||
+                    orderStatus === status;
+
+
+                return (
+                    matchesSearch &&
+                    matchesStatus
+                );
+
+            }
+
+        );
+
+
+    if (filtered.length === 0) {
+
+        container.innerHTML =
+            `<div class="empty">
+                No orders found.
+            </div>`;
 
         return;
 
     }
 
 
+    container.innerHTML = "";
 
-    message.style.color =
-        "#173b20";
 
-    message.innerText =
-        "Logging in...";
+    filtered.forEach(
 
+        function(order) {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "order-card";
+
+
+            const customerName =
+                order.customerName ||
+                order.name ||
+                "Customer";
+
+
+            const phone =
+                order.phone ||
+                "No phone";
+
+
+            const address =
+                order.address ||
+                order.location ||
+                "No address";
+
+
+            const orderStatus =
+                order.status ||
+                "Pending";
+
+
+            const date =
+                formatDate(order);
+
+
+            let itemsHTML = "";
+
+
+            if (
+                Array.isArray(order.items)
+            ) {
+
+
+                order.items.forEach(
+
+                    function(item) {
+
+
+                        const name =
+                            item.name ||
+                            "Item";
+
+
+                        const qty =
+                            item.quantity ||
+                            item.qty ||
+                            1;
+
+
+                        const price =
+                            Number(
+                                item.price || 0
+                            );
+
+
+                        itemsHTML += `
+
+                            <div class="item-row">
+
+                                <span>
+                                    ${name} × ${qty}
+                                </span>
+
+                                <span>
+                                    ₹${price * qty}
+                                </span>
+
+                            </div>
+
+                        `;
+
+                    }
+
+                );
+
+            }
+
+
+            const total =
+                Number(
+                    order.total ||
+                    order.grandTotal ||
+                    0
+                );
+
+
+            card.innerHTML = `
+
+                <div class="order-top">
+
+                    <div>
+
+                        <div class="order-id">
+
+                            Order:
+                            ${order.id}
+
+                        </div>
+
+                        <div class="order-date">
+
+                            ${date}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="customer">
+
+                    <strong>
+                        👤 ${customerName}
+                    </strong>
+
+                    <br>
+
+                    📞 ${phone}
+
+                    <br>
+
+                    📍 ${address}
+
+                </div>
+
+
+                <div class="items">
+
+                    <strong>
+                        Items
+                    </strong>
+
+                    ${itemsHTML}
+
+                </div>
+
+
+                <div class="order-total">
+
+                    Total:
+                    ₹${total}
+
+                </div>
+
+
+                <div class="order-actions">
+
+
+                    <select
+                        class="status-select"
+                        onchange="changeOrderStatus(
+                            '${order.id}',
+                            this.value
+                        )"
+                    >
+
+                        ${statusOption(
+                            "Pending",
+                            orderStatus
+                        )}
+
+                        ${statusOption(
+                            "Confirmed",
+                            orderStatus
+                        )}
+
+                        ${statusOption(
+                            "Preparing",
+                            orderStatus
+                        )}
+
+                        ${statusOption(
+                            "Ready",
+                            orderStatus
+                        )}
+
+                        ${statusOption(
+                            "Delivered",
+                            orderStatus
+                        )}
+
+                        ${statusOption(
+                            "Cancelled",
+                            orderStatus
+                        )}
+
+                    </select>
+
+
+                    <button
+                        class="print-btn"
+                        onclick="printOrder(
+                            '${order.id}'
+                        )"
+                    >
+                        🖨 Print
+                    </button>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteOrder(
+                            '${order.id}'
+                        )"
+                    >
+                        🗑 Delete
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   STATUS OPTION
+===================================================== */
+
+function statusOption(
+    value,
+    current
+) {
+
+
+    return `
+
+        <option
+            value="${value}"
+            ${value === current ? "selected" : ""}
+        >
+            ${value}
+        </option>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   FILTER ORDERS
+===================================================== */
+
+window.filterOrders = function() {
+
+    displayOrders();
+
+};
+
+
+
+/* =====================================================
+   UPDATE STATS
+===================================================== */
+
+function updateStats() {
+
+
+    document.getElementById(
+        "totalOrders"
+    ).innerText =
+        allOrders.length;
+
+
+    let pending = 0;
+
+    let completed = 0;
+
+    let sales = 0;
+
+
+    allOrders.forEach(
+
+        function(order) {
+
+
+            const status =
+                order.status ||
+                "Pending";
+
+
+            if (status === "Pending") {
+
+                pending++;
+
+            }
+
+
+            if (status === "Delivered") {
+
+                completed++;
+
+            }
+
+
+            sales += Number(
+                order.total ||
+                order.grandTotal ||
+                0
+            );
+
+        }
+
+    );
+
+
+    document.getElementById(
+        "pendingOrders"
+    ).innerText =
+        pending;
+
+
+    document.getElementById(
+        "completedOrders"
+    ).innerText =
+        completed;
+
+
+    document.getElementById(
+        "totalSales"
+    ).innerText =
+        "₹" + sales;
+
+}
+
+
+
+/* =====================================================
+   CHANGE ORDER STATUS
+===================================================== */
+
+window.changeOrderStatus =
+async function(
+
+    orderId,
+
+    newStatus
+
+) {
 
 
     try {
 
 
-        /* =========================
-           SAVE LOGIN SESSION
-        ========================= */
+        await updateDoc(
 
-        await setPersistence(
-            auth,
-            browserLocalPersistence
-        );
+            doc(
+                db,
+                "orders",
+                orderId
+            ),
 
+            {
 
-        /* =========================
-           LOGIN
-        ========================= */
+                status: newStatus
 
-        await signInWithEmailAndPassword(
+            }
 
-            auth,
-
-            email,
-
-            password
-
-        );
-
-
-
-        message.style.color =
-            "green";
-
-
-        message.innerText =
-            "✅ Login successful!";
-
-
-        /* =========================
-           OPEN DASHBOARD
-        ========================= */
-
-        window.location.replace(
-            "admin-dashboard.html"
         );
 
 
     }
 
+    catch (error) {
+
+
+        console.error(error);
+
+
+        alert(
+            "❌ Could not update order."
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   DELETE ORDER
+===================================================== */
+
+window.deleteOrder =
+async function(orderId) {
+
+
+    if (
+        !confirm(
+            "Delete this order?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "orders",
+                orderId
+            )
+
+        );
+
+
+    }
 
     catch (error) {
 
 
-        console.error(
-            "Firebase Login Error:",
-            error
+        console.error(error);
+
+
+        alert(
+            "❌ Could not delete order."
         );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   PRINT ORDER
+===================================================== */
+
+window.printOrder =
+function(orderId) {
+
+
+    const order =
+        allOrders.find(
+
+            function(item) {
+
+                return item.id ===
+                       orderId;
+
+            }
+
+        );
+
+
+    if (!order) {
+
+        return;
+
+    }
+
+
+    const customerName =
+        order.customerName ||
+        order.name ||
+        "Customer";
+
+
+    let items = "";
+
+
+    if (
+        Array.isArray(order.items)
+    ) {
+
+
+        order.items.forEach(
+
+            function(item) {
+
+
+                const qty =
+                    item.quantity ||
+                    item.qty ||
+                    1;
+
+
+                const price =
+                    Number(
+                        item.price || 0
+                    );
+
+
+                items += `
+
+                    <p>
+                        ${item.name}
+                        × ${qty}
+                        = ₹${price * qty}
+                    </p>
+
+                `;
+
+            }
+
+        );
+
+    }
+
+
+    const total =
+        Number(
+            order.total ||
+            order.grandTotal ||
+            0
+        );
+
+
+    const printWindow =
+        window.open(
+            "",
+            "_blank"
+        );
+
+
+    printWindow.document.write(`
+
+        <html>
+
+        <head>
+
+            <title>
+                Kayakani Bakery Order
+            </title>
+
+        </head>
+
+        <body>
+
+            <h1>
+                🍰 Kayakani Bakery
+            </h1>
+
+            <h2>
+                Order ${order.id}
+            </h2>
+
+            <p>
+                Customer:
+                ${customerName}
+            </p>
+
+            <p>
+                Phone:
+                ${order.phone || ""}
+            </p>
+
+            <hr>
+
+            ${items}
+
+            <hr>
+
+            <h2>
+                Total: ₹${total}
+            </h2>
+
+        </body>
+
+        </html>
+
+    `);
+
+
+    printWindow.document.close();
+
+
+    printWindow.print();
+
+};
+
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(order) {
+
+
+    const time =
+        getTime(order);
+
+
+    if (!time) {
+
+        return "Date unavailable";
+
+    }
+
+
+    return new Date(time)
+        .toLocaleString();
+
+}
+
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+function loadProducts() {
+
+
+    const productsRef =
+        collection(
+            db,
+            "products"
+        );
+
+
+    onSnapshot(
+
+        productsRef,
+
+        function(snapshot) {
+
+
+            allProducts = [];
+
+
+            snapshot.forEach(
+
+                function(item) {
+
+
+                    allProducts.push({
+
+                        id: item.id,
+
+                        ...item.data()
+
+                    });
+
+                }
+
+            );
+
+
+            allProducts.sort(
+
+                function(a, b) {
+
+                    return String(
+                        a.name || ""
+                    ).localeCompare(
+                        String(
+                            b.name || ""
+                        )
+                    );
+
+                }
+
+            );
+
+
+            displayProducts();
+
+        },
+
+        function(error) {
+
+
+            console.error(
+                "Products error:",
+                error
+            );
+
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   DISPLAY PRODUCTS
+===================================================== */
+
+function displayProducts() {
+
+
+    const container =
+        document.getElementById(
+            "productsList"
+        );
+
+
+    if (allProducts.length === 0) {
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                No products added yet.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    allProducts.forEach(
+
+        function(product) {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "product-card";
+
+
+            let imageHTML = "";
+
+
+            if (product.image) {
+
+
+                imageHTML = `
+
+                    <img
+                        class="product-image"
+                        src="${product.image}"
+                        onerror="
+                            this.style.display='none'
+                        "
+                    >
+
+                `;
+
+            }
+
+
+            const available =
+                product.available !== false;
+
+
+            card.innerHTML = `
+
+                ${imageHTML}
+
+
+                <div class="product-name">
+
+                    ${product.name || "Product"}
+
+                </div>
+
+
+                <div class="product-price">
+
+                    ₹${Number(
+                        product.price || 0
+                    )}
+
+                </div>
+
+
+                <div class="product-category">
+
+                    Category:
+                    ${product.category || "-"}
+
+                </div>
+
+
+                <div class="${
+                    available
+                    ? "available"
+                    : "unavailable"
+                }">
+
+                    ${
+                        available
+                        ? "✅ Available"
+                        : "❌ Unavailable"
+                    }
+
+                </div>
+
+
+                <div class="product-actions">
+
+
+                    <button
+                        class="edit-btn"
+                        onclick="editProduct(
+                            '${product.id}'
+                        )"
+                    >
+                        ✏ Edit
+                    </button>
+
+
+                    <button
+                        class="availability-btn"
+                        onclick="toggleProductAvailability(
+                            '${product.id}',
+                            ${available}
+                        )"
+                    >
+
+                        ${
+                            available
+                            ? "Make Unavailable"
+                            : "Make Available"
+                        }
+
+                    </button>
+
+
+                    <button
+                        class="product-delete"
+                        onclick="deleteProduct(
+                            '${product.id}'
+                        )"
+                    >
+                        🗑 Delete
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   ADD / UPDATE PRODUCT
+===================================================== */
+
+window.saveProduct =
+async function() {
+
+
+    const name =
+        document
+        .getElementById(
+            "productName"
+        )
+        .value
+        .trim();
+
+
+    const price =
+        Number(
+            document
+            .getElementById(
+                "productPrice"
+            )
+            .value
+        );
+
+
+    const category =
+        document
+        .getElementById(
+            "productCategory"
+        )
+        .value;
+
+
+    const image =
+        document
+        .getElementById(
+            "productImage"
+        )
+        .value
+        .trim();
+
+
+    const message =
+        document.getElementById(
+            "productMessage"
+        );
+
+
+    if (
+        name === "" ||
+        price <= 0 ||
+        category === ""
+    ) {
 
 
         message.style.color =
             "red";
 
 
+        message.innerText =
+            "Please enter product name, price and category.";
 
-        if (
-            error.code ===
-            "auth/invalid-credential"
-        ) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        if (editingProductId) {
+
+
+            /* UPDATE */
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "products",
+                    editingProductId
+                ),
+
+                {
+
+                    name: name,
+
+                    price: price,
+
+                    category: category,
+
+                    image: image
+
+                }
+
+            );
+
+
+            message.style.color =
+                "green";
+
 
             message.innerText =
-                "❌ Invalid email or password.";
+                "✅ Product updated!";
 
-        }
-
-        else if (
-            error.code ===
-            "auth/user-not-found"
-        ) {
-
-            message.innerText =
-                "❌ Admin account not found.";
-
-        }
-
-        else if (
-            error.code ===
-            "auth/wrong-password"
-        ) {
-
-            message.innerText =
-                "❌ Wrong password.";
 
         }
 
         else {
 
+
+            /* ADD */
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "products"
+                ),
+
+                {
+
+                    name: name,
+
+                    price: price,
+
+                    category: category,
+
+                    image: image,
+
+                    icon: "🍰",
+
+                    available: true,
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+
+            );
+
+
+            message.style.color =
+                "green";
+
+
             message.innerText =
-                "❌ " + error.message;
+                "✅ Product added!";
 
         }
+
+
+        clearProductForm();
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(error);
+
+
+        message.style.color =
+            "red";
+
+
+        message.innerText =
+            "❌ Error saving product.";
 
     }
 
 };
+
+
+
+/* =====================================================
+   EDIT PRODUCT
+===================================================== */
+
+window.editProduct =
+function(productId) {
+
+
+    const product =
+        allProducts.find(
+
+            function(item) {
+
+                return item.id ===
+                       productId;
+
+            }
+
+        );
+
+
+    if (!product) {
+
+        return;
+
+    }
+
+
+    editingProductId =
+        productId;
+
+
+    document.getElementById(
+        "productName"
+    ).value =
+        product.name || "";
+
+
+    document.getElementById(
+        "productPrice"
+    ).value =
+        product.price || "";
+
+
+    document.getElementById(
+        "productCategory"
+    ).value =
+        product.category || "";
+
+
+    document.getElementById(
+        "productImage"
+    ).value =
+        product.image || "";
+
+
+    document.getElementById(
+        "productFormTitle"
+    ).innerText =
+        "✏ Edit Product";
+
+
+    document.getElementById(
+        "productSubmitButton"
+    ).innerText =
+        "💾 Update Product";
+
+
+    document.getElementById(
+        "cancelEditButton"
+    ).style.display =
+        "block";
+
+
+    window.scrollTo({
+
+        top: document
+            .getElementById(
+                "productFormTitle"
+            )
+            .offsetTop - 30,
+
+        behavior: "smooth"
+
+    });
+
+};
+
+
+
+/* =====================================================
+   CANCEL EDIT
+===================================================== */
+
+window.cancelEdit =
+function() {
+
+    clearProductForm();
+
+};
+
+
+
+/* =====================================================
+   CLEAR PRODUCT FORM
+===================================================== */
+
+function clearProductForm() {
+
+
+    editingProductId =
+        null;
+
+
+    document.getElementById(
+        "productName"
+    ).value = "";
+
+
+    document.getElementById(
+        "productPrice"
+    ).value = "";
+
+
+    document.getElementById(
+        "productCategory"
+    ).value = "";
+
+
+    document.getElementById(
+        "productImage"
+    ).value = "";
+
+
+    document.getElementById(
+        "productFormTitle"
+    ).innerText =
+        "➕ Add New Product";
+
+
+    document.getElementById(
+        "productSubmitButton"
+    ).innerText =
+        "➕ Add Product";
+
+
+    document.getElementById(
+        "cancelEditButton"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   TOGGLE AVAILABILITY
+===================================================== */
+
+window.toggleProductAvailability =
+async function(
+
+    productId,
+
+    currentStatus
+
+) {
+
+
+    try {
+
+
+        await updateDoc(
+
+            doc(
+                db,
+                "products",
+                productId
+            ),
+
+            {
+
+                available:
+                    !currentStatus
+
+            }
+
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(error);
+
+
+        alert(
+            "❌ Could not change availability."
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
+
+window.deleteProduct =
+async function(productId) {
+
+
+    const product =
+        allProducts.find(
+
+            function(item) {
+
+                return item.id ===
+                       productId;
+
+            }
+
+        );
+
+
+    if (!product) {
+
+        return;
+
+    }
+
+
+    if (
+        !confirm(
+            "Delete " +
+            product.name +
+            "?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "products",
+                productId
+            )
+
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(error);
+
+
+        alert(
+            "❌ Could not delete product."
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout =
+async function() {
+
+
+    try {
+
+
+        await signOut(auth);
+
+
+        window.location.replace(
+            "admin.html"
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(error);
+
+    }
+
+};
+
 
 </script>
 
