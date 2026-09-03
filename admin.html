@@ -5,8 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Kayakani Bakery - Admin Login</title>
 
@@ -17,27 +16,19 @@
         }
 
         body {
-
             margin: 0;
-
             font-family: Arial, sans-serif;
-
             background: #fffaf0;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
             min-height: 100vh;
-
         }
 
         .login-box {
-
             width: 90%;
-
             max-width: 400px;
 
             background: white;
@@ -47,33 +38,31 @@
             border-radius: 20px;
 
             box-shadow: 0 10px 30px #0002;
-
         }
 
         .logo {
-
             text-align: center;
 
-            font-size: 28px;
+            font-size: 30px;
 
             font-weight: bold;
 
             color: #173b20;
 
+            margin-bottom: 5px;
         }
 
         .subtitle {
-
             text-align: center;
 
             color: #777;
 
             margin-bottom: 30px;
 
+            line-height: 1.5;
         }
 
         label {
-
             display: block;
 
             margin: 15px 0 7px;
@@ -81,11 +70,9 @@
             font-weight: bold;
 
             color: #173b20;
-
         }
 
         input {
-
             width: 100%;
 
             padding: 13px;
@@ -96,10 +83,14 @@
 
             font-size: 15px;
 
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #173b20;
         }
 
         .login-button {
-
             width: 100%;
 
             margin-top: 25px;
@@ -119,21 +110,18 @@
             font-weight: bold;
 
             cursor: pointer;
-
         }
 
         .login-button:hover {
-
             background: #638d32;
-
         }
 
         #message {
-
             text-align: center;
 
             margin-top: 15px;
 
+            min-height: 20px;
         }
 
     </style>
@@ -148,9 +136,7 @@
 
 
     <div class="logo">
-
         🍰 Kayakani
-
     </div>
 
 
@@ -164,51 +150,34 @@
 
 
     <label>
-
         Email
-
     </label>
 
 
     <input
-
         type="email"
-
         id="email"
-
         placeholder="Enter admin email"
-
     >
 
 
     <label>
-
         Password
-
     </label>
 
 
     <input
-
         type="password"
-
         id="password"
-
         placeholder="Enter password"
-
     >
 
 
     <button
-
         class="login-button"
-
         onclick="login()"
-
     >
-
         🔐 Login
-
     </button>
 
 
@@ -222,30 +191,29 @@
 <script type="module">
 
 
-/* ================= FIREBASE ================= */
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import {
-
     initializeApp
-
 } from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import {
-
     getAuth,
-
-    signInWithEmailAndPassword
-
+    signInWithEmailAndPassword,
+    setPersistence,
+    browserLocalPersistence
 } from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 
-/* ================= CONFIG ================= */
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
 
 const firebaseConfig = {
 
@@ -271,7 +239,9 @@ const firebaseConfig = {
 
 
 
-/* ================= INITIALIZE ================= */
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
 const app =
     initializeApp(firebaseConfig);
@@ -282,9 +252,11 @@ const auth =
 
 
 
-/* ================= LOGIN ================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
-window.login = async function () {
+window.login = async function() {
 
 
     const email =
@@ -305,6 +277,8 @@ window.login = async function () {
         .getElementById("message");
 
 
+
+    /* EMPTY CHECK */
 
     if (
         email === "" ||
@@ -333,26 +307,31 @@ window.login = async function () {
     try {
 
 
-        await signInWithEmailAndPassword(
+        /* SAVE LOGIN */
 
+        await setPersistence(
             auth,
+            browserLocalPersistence
+        );
 
+
+        /* LOGIN */
+
+        await signInWithEmailAndPassword(
+            auth,
             email,
-
             password
-
         );
 
 
         message.style.color =
             "green";
 
-
         message.innerText =
             "✅ Login successful!";
 
 
-        /* DIRECT REDIRECT */
+        /* OPEN DASHBOARD */
 
         window.location.replace(
             "admin-dashboard.html"
@@ -361,12 +340,11 @@ window.login = async function () {
 
     }
 
-
     catch (error) {
 
 
         console.error(
-            "Firebase Login Error:",
+            "Login error:",
             error
         );
 
@@ -415,6 +393,7 @@ window.login = async function () {
     }
 
 };
+
 
 </script>
 
