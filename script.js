@@ -1,9 +1,3 @@
-// ==================================================
-// KAYAKANI BAKERY & SWEETS
-// COMPLETE ORDERING SYSTEM + FIRESTORE + PRODUCT IMAGES
-// ==================================================
-
-
 // ================= PRODUCTS =================
 
 const products = [
@@ -105,7 +99,7 @@ const products = [
         image: "images/bread.png"
     },
 
-    // MIXTURE
+    // MIXTURE & SAVOURIES
     {
         name: "Mixture - 100g",
         price: 40,
@@ -214,8 +208,7 @@ const products = [
         name: "Banana Cake",
         price: 70,
         category: "cakes",
-        icon: "🍌",
-        image: "images/banana cake.png"
+        icon: "🍌"
     },
     {
         name: "0.5 kg Birthday Cake",
@@ -252,24 +245,15 @@ function displayProducts(list = products) {
 
                 <div class="product-icon">
 
-                    <img
-                        src="${product.image}"
-                        alt="${product.name}"
-                        style="
-                            width:100%;
-                            height:160px;
-                            object-fit:cover;
-                            border-radius:10px;
-                        "
-                        onerror="
-                            this.style.display='none';
-                            this.nextElementSibling.style.display='block';
-                        "
-                    >
-
-                    <span style="display:none;">
-                        ${product.icon}
-                    </span>
+                    ${
+                        product.image
+                        ? `<img 
+                            src="${product.image}" 
+                            alt="${product.name}"
+                            style="width:100%; height:180px; object-fit:cover; border-radius:10px;"
+                          >`
+                        : product.icon
+                    }
 
                 </div>
 
@@ -323,17 +307,22 @@ function showCategory(category) {
 
 function searchProducts() {
 
-    const input = document.getElementById("searchInput");
+    const input =
+        document.getElementById("searchInput");
 
     if (!input) return;
 
-    const search = input.value.toLowerCase().trim();
+    const search =
+        input.value.toLowerCase().trim();
 
-    const filtered = products.filter(function(product) {
+    const filtered =
+        products.filter(function(product) {
 
-        return product.name.toLowerCase().includes(search);
+            return product.name
+                .toLowerCase()
+                .includes(search);
 
-    });
+        });
 
     displayProducts(filtered);
 }
@@ -347,11 +336,12 @@ function addToCart(index) {
 
     if (!product) return;
 
-    const existing = cart.find(function(item) {
+    const existing =
+        cart.find(function(item) {
 
-        return item.name === product.name;
+            return item.name === product.name;
 
-    });
+        });
 
     if (existing) {
 
@@ -382,13 +372,19 @@ function addToCart(index) {
 
 function updateCart() {
 
-    const cartCount = document.getElementById("cartCount");
-    const cartItems = document.getElementById("cartItems");
-    const cartTotal = document.getElementById("cartTotal");
+    const cartCount =
+        document.getElementById("cartCount");
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
 
     if (!cartItems) return;
 
     let totalItems = 0;
+
     let totalPrice = 0;
 
     cartItems.innerHTML = "";
@@ -397,40 +393,47 @@ function updateCart() {
 
         totalItems += item.quantity;
 
-        const itemTotal = item.price * item.quantity;
+        const itemTotal =
+            item.price * item.quantity;
 
         totalPrice += itemTotal;
 
         cartItems.innerHTML += `
-            <div
-                class="cart-item"
-                style="
-                    display:flex;
-                    align-items:center;
-                    gap:12px;
-                    padding:10px 0;
-                "
-            >
+            <div class="cart-item">
 
-                <!-- PRODUCT IMAGE -->
+                ${
+                    item.image
+                    ? `
+                    <img
+                        src="${item.image}"
+                        alt="${item.name}"
+                        style="
+                            width:65px;
+                            height:65px;
+                            object-fit:cover;
+                            border-radius:10px;
+                            margin-right:10px;
+                        "
+                    >
+                    `
+                    : `
+                    <div
+                        style="
+                            width:65px;
+                            height:65px;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:30px;
+                            margin-right:10px;
+                        "
+                    >
+                        ${item.icon}
+                    </div>
+                    `
+                }
 
-                <img
-                    src="${item.image}"
-                    alt="${item.name}"
-                    style="
-                        width:65px;
-                        height:65px;
-                        object-fit:cover;
-                        border-radius:10px;
-                        flex-shrink:0;
-                    "
-                    onerror="this.style.display='none';"
-                >
-
-
-                <!-- PRODUCT NAME AND PRICE -->
-
-                <div style="flex:1;">
+                <div>
 
                     <strong>
                         ${item.name}
@@ -441,9 +444,6 @@ function updateCart() {
                     ₹${item.price}
 
                 </div>
-
-
-                <!-- QUANTITY -->
 
                 <div class="quantity">
 
@@ -467,18 +467,25 @@ function updateCart() {
         `;
     });
 
+
     if (cart.length === 0) {
 
         cartItems.innerHTML =
             "<p>Your cart is empty.</p>";
     }
 
+
     if (cartCount) {
-        cartCount.innerText = totalItems;
+
+        cartCount.innerText =
+            totalItems;
     }
 
+
     if (cartTotal) {
-        cartTotal.innerText = totalPrice;
+
+        cartTotal.innerText =
+            totalPrice;
     }
 }
 
@@ -504,10 +511,13 @@ function changeQuantity(index, change) {
 
 function openCart() {
 
-    const modal = document.getElementById("cartModal");
+    const modal =
+        document.getElementById("cartModal");
 
     if (modal) {
-        modal.style.display = "block";
+
+        modal.style.display =
+            "block";
     }
 }
 
@@ -516,10 +526,13 @@ function openCart() {
 
 function closeCart() {
 
-    const modal = document.getElementById("cartModal");
+    const modal =
+        document.getElementById("cartModal");
 
     if (modal) {
-        modal.style.display = "none";
+
+        modal.style.display =
+            "none";
     }
 }
 
@@ -530,17 +543,22 @@ function checkout() {
 
     if (cart.length === 0) {
 
-        alert("Please add an item to your cart.");
+        alert(
+            "Please add an item to your cart."
+        );
 
         return;
     }
 
     closeCart();
 
-    const modal = document.getElementById("checkoutModal");
+    const modal =
+        document.getElementById("checkoutModal");
 
     if (modal) {
-        modal.style.display = "block";
+
+        modal.style.display =
+            "block";
     }
 
     updateCheckoutSummary();
@@ -553,10 +571,13 @@ function checkout() {
 
 function closeCheckout() {
 
-    const modal = document.getElementById("checkoutModal");
+    const modal =
+        document.getElementById("checkoutModal");
 
     if (modal) {
-        modal.style.display = "none";
+
+        modal.style.display =
+            "none";
     }
 }
 
@@ -565,7 +586,8 @@ function closeCheckout() {
 
 function selectOrderType(type) {
 
-    document.getElementById("orderType").value = type;
+    document.getElementById("orderType").value =
+        type;
 
     const pickupBtn =
         document.getElementById("pickupBtn");
@@ -579,13 +601,15 @@ function selectOrderType(type) {
     const addressSection =
         document.getElementById("addressSection");
 
+
     if (type === "Pickup") {
 
         pickupBtn.classList.add("selected");
 
         deliveryBtn.classList.remove("selected");
 
-        addressSection.style.display = "none";
+        addressSection.style.display =
+            "none";
 
         address.disabled = true;
 
@@ -597,7 +621,8 @@ function selectOrderType(type) {
 
         pickupBtn.classList.remove("selected");
 
-        addressSection.style.display = "block";
+        addressSection.style.display =
+            "block";
 
         address.disabled = false;
     }
@@ -641,6 +666,7 @@ function updateCheckoutSummary() {
         `;
     });
 
+
     const orderType =
         document.getElementById("orderType").value;
 
@@ -651,8 +677,10 @@ function updateCheckoutSummary() {
         deliveryCharge = 30;
     }
 
+
     const grandTotal =
         itemsTotal + deliveryCharge;
+
 
     document.getElementById("itemsTotal").innerText =
         itemsTotal;
@@ -681,13 +709,16 @@ function updateCakeCustomization() {
 
         });
 
+
     if (hasCake) {
 
-        cakeSection.style.display = "block";
+        cakeSection.style.display =
+            "block";
 
     } else {
 
-        cakeSection.style.display = "none";
+        cakeSection.style.display =
+            "none";
     }
 }
 
@@ -708,13 +739,15 @@ function selectPayment(method) {
     const upiSection =
         document.getElementById("upiSection");
 
+
     if (method === "Cash") {
 
         cashBtn.classList.add("selected");
 
         upiBtn.classList.remove("selected");
 
-        upiSection.style.display = "none";
+        upiSection.style.display =
+            "none";
 
     } else {
 
@@ -722,7 +755,8 @@ function selectPayment(method) {
 
         cashBtn.classList.remove("selected");
 
-        upiSection.style.display = "block";
+        upiSection.style.display =
+            "block";
     }
 }
 
@@ -736,19 +770,25 @@ function payUPI() {
     cart.forEach(function(item) {
 
         total +=
-            item.price * item.quantity;
+            item.price *
+            item.quantity;
+
     });
+
 
     const orderType =
         document.getElementById("orderType").value;
+
 
     if (orderType === "Delivery") {
 
         total += 30;
     }
 
+
     const upiID =
         "9025611796@nyes";
+
 
     const upiURL =
         "upi://pay?pa=" +
@@ -757,6 +797,7 @@ function payUPI() {
         "&am=" +
         total +
         "&cu=INR";
+
 
     window.location.href =
         upiURL;
@@ -788,48 +829,28 @@ async function sendWhatsAppOrder() {
         .value;
 
 
-    // ================= VALIDATION =================
+    if (!name || !phone) {
 
-    if (name === "") {
-
-        alert("Please enter your name.");
-
-        return;
-    }
-
-    if (phone === "") {
-
-        alert("Please enter your mobile number.");
-
-        return;
-    }
-
-    if (type === "Delivery" && address === "") {
-
-        alert("Please enter your delivery address.");
-
-        return;
-    }
-
-    if (cart.length === 0) {
-
-        alert("Your cart is empty.");
-
-        return;
-    }
-
-
-    // ================= ORDER ID =================
-
-    const orderId =
-        "KYK-" +
-        Math.floor(
-            100000 +
-            Math.random() * 900000
+        alert(
+            "Please enter your name and phone number."
         );
 
+        return;
+    }
 
-    // ================= CALCULATE TOTAL =================
+
+    if (
+        type === "Delivery" &&
+        !address
+    ) {
+
+        alert(
+            "Please enter your delivery address."
+        );
+
+        return;
+    }
+
 
     let total = 0;
 
@@ -838,10 +859,9 @@ async function sendWhatsAppOrder() {
         total +=
             item.price *
             item.quantity;
+
     });
 
-
-    // ================= DELIVERY =================
 
     let deliveryCharge = 0;
 
@@ -851,26 +871,29 @@ async function sendWhatsAppOrder() {
     }
 
 
-    // ================= GRAND TOTAL =================
-
     const grandTotal =
-        total +
-        deliveryCharge;
+        total + deliveryCharge;
 
 
-    // ================= CAKE DETAILS =================
+    const orderId =
+        "KYK-" +
+        Date.now();
 
-    const cake =
-        cart.find(function(item) {
+
+    let cakeMessage = "";
+
+    let cakeInstructions = "";
+
+
+    const hasCake =
+        cart.some(function(item) {
 
             return item.cake === true;
 
         });
 
-    let cakeMessage = "";
-    let cakeInstructions = "";
 
-    if (cake) {
+    if (hasCake) {
 
         const messageInput =
             document.getElementById("cakeMessage");
@@ -878,11 +901,13 @@ async function sendWhatsAppOrder() {
         const instructionsInput =
             document.getElementById("cakeInstructions");
 
+
         if (messageInput) {
 
             cakeMessage =
                 messageInput.value.trim();
         }
+
 
         if (instructionsInput) {
 
@@ -892,9 +917,7 @@ async function sendWhatsAppOrder() {
     }
 
 
-    // ==================================================
-    // SAVE ORDER TO FIRESTORE
-    // ==================================================
+    // ================= SAVE ORDER TO FIRESTORE =================
 
     try {
 
@@ -942,14 +965,17 @@ async function sendWhatsAppOrder() {
             status: "New",
 
             createdAt:
-                firebase.firestore.FieldValue
+                firebase.firestore
+                .FieldValue
                 .serverTimestamp()
 
         });
 
+
         console.log(
             "Order saved successfully to Firestore."
         );
+
 
     } catch (error) {
 
@@ -966,7 +992,7 @@ async function sendWhatsAppOrder() {
     }
 
 
-    // ================= MESSAGE =================
+    // ================= WHATSAPP MESSAGE =================
 
     let message =
         "KAYAKANI BAKERY & SWEETS\n\n";
@@ -1030,8 +1056,6 @@ async function sendWhatsAppOrder() {
     });
 
 
-    // ================= TOTAL =================
-
     message +=
         "\nItems Total: Rs." +
         total;
@@ -1041,14 +1065,13 @@ async function sendWhatsAppOrder() {
         deliveryCharge;
 
 
-    // ================= CAKE DETAILS =================
-
     if (cakeMessage !== "") {
 
         message +=
             "\nCake Message: " +
             cakeMessage;
     }
+
 
     if (cakeInstructions !== "") {
 
@@ -1076,18 +1099,17 @@ async function sendWhatsAppOrder() {
         encodeURIComponent(message);
 
 
-    // ================= OPEN WHATSAPP =================
-
     window.open(
         whatsappURL,
         "_blank"
     );
 
 
-    // ================= SHOW CONFIRMATION =================
+    // ================= CONFIRMATION =================
 
     const confirmationOrderId =
         document.getElementById("orderId");
+
 
     if (confirmationOrderId) {
 
@@ -1095,8 +1117,10 @@ async function sendWhatsAppOrder() {
             orderId;
     }
 
+
     const confirmationModal =
         document.getElementById("confirmationModal");
+
 
     if (confirmationModal) {
 
@@ -1124,11 +1148,13 @@ function closeConfirmation() {
     const confirmationModal =
         document.getElementById("confirmationModal");
 
+
     if (confirmationModal) {
 
         confirmationModal.style.display =
             "none";
     }
+
 
     cart = [];
 
