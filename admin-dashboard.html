@@ -757,33 +757,59 @@ let editingProductId = null;
 
 onAuthStateChanged(auth, function(user) {
 
+    console.log("🔍 AUTH CHECK STARTED");
+    console.log("Current user:", user);
+
     if (user) {
 
-        console.log(
-            "✅ Admin logged in:",
-            user.email
+        console.log("✅ ADMIN SESSION FOUND");
+        console.log("Email:", user.email);
+        console.log("UID:", user.uid);
+
+        document.body.insertAdjacentHTML(
+            "afterbegin",
+            `
+            <div style="
+                background:#d4edda;
+                color:#155724;
+                padding:15px;
+                text-align:center;
+                font-size:18px;
+                font-weight:bold;
+            ">
+                ✅ Admin logged in: ${user.email}
+            </div>
+            `
         );
 
         loadOrders();
-
         loadProducts();
 
-    }
+    } else {
 
-    else {
+        console.log("❌ NO ADMIN SESSION FOUND");
 
-        console.log(
-            "❌ No admin session found."
+        document.body.insertAdjacentHTML(
+            "afterbegin",
+            `
+            <div style="
+                background:#f8d7da;
+                color:#721c24;
+                padding:15px;
+                text-align:center;
+                font-size:18px;
+                font-weight:bold;
+            ">
+                ❌ Firebase says NO USER IS LOGGED IN
+            </div>
+            `
         );
 
-        window.location.replace(
-            "admin.html"
-        );
-
+        // TEMPORARILY DO NOT REDIRECT
+        // window.location.replace("admin.html");
     }
 
 });
-
 
 /* =====================================================
    LOAD ORDERS
