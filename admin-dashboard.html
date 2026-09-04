@@ -793,54 +793,26 @@ let authChecked = false;
    AUTHENTICATION
 ===================================================== */
 
-onAuthStateChanged(
-    auth,
-    function(user) {
+onAuthStateChanged(auth, function(user) {
 
-        if (user) {
+    if (user) {
 
-            console.log(
-                "✅ Admin logged in:",
-                user.email
-            );
+        console.log("✅ Admin logged in:", user.email);
 
-            authChecked = true;
+        authChecked = true;
 
-            loadOrders();
+        loadOrders();
+        loadProducts();
 
-            loadProducts();
+    } else {
 
-        }
+        console.log("❌ No admin session found.");
 
-        else {
-
-            console.log(
-                "⏳ Checking login session..."
-            );
-
-            setTimeout(
-                function() {
-
-                    if (!authChecked) {
-
-                        console.log(
-                            "❌ No admin session found."
-                        );
-
-                        window.location.replace(
-                            "admin.html"
-                        );
-
-                    }
-
-                },
-                3000
-            );
-
-        }
+        window.location.replace("admin.html");
 
     }
-);
+
+});
 
 
 
