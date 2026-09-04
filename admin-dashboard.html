@@ -10,6 +10,7 @@
 
     <title>Kayakani Bakery - Admin Dashboard</title>
 
+
     <style>
 
         * {
@@ -253,42 +254,6 @@
             background: #777 !important;
         }
 
-        .image-help {
-            grid-column: 1 / -1;
-            background: #f5f7f2;
-            padding: 10px;
-            border-radius: 8px;
-            color: #555;
-            font-size: 13px;
-        }
-
-        .image-preview-box {
-            grid-column: 1 / -1;
-            display: none;
-            padding: 12px;
-            border: 1px dashed #aaa;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .image-preview-box img {
-            max-width: 220px;
-            max-height: 160px;
-            object-fit: contain;
-            border-radius: 10px;
-            background: #f7f7f7;
-        }
-
-        .preview-success {
-            color: green;
-            font-weight: bold;
-        }
-
-        .preview-error {
-            color: red;
-            font-weight: bold;
-        }
-
         .products-list {
             display: grid;
             grid-template-columns:
@@ -313,19 +278,6 @@
             margin-bottom: 10px;
         }
 
-        .no-image {
-            width: 100%;
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f7f7f7;
-            border-radius: 10px;
-            color: #888;
-            margin-bottom: 10px;
-            font-size: 40px;
-        }
-
         .product-name {
             font-weight: bold;
             font-size: 17px;
@@ -343,23 +295,14 @@
             margin-top: 5px;
         }
 
-        .product-image-path {
-            color: #888;
-            font-size: 12px;
-            margin-top: 5px;
-            word-break: break-all;
-        }
-
         .available {
             color: green;
             font-weight: bold;
-            margin-top: 8px;
         }
 
         .unavailable {
             color: red;
             font-weight: bold;
-            margin-top: 8px;
         }
 
         .product-actions {
@@ -423,6 +366,10 @@
 <body>
 
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
 
     <h1>
@@ -450,23 +397,54 @@
 <div class="stats">
 
     <div class="stat">
-        <h3>Total Orders</h3>
-        <p id="totalOrders">0</p>
+
+        <h3>
+            Total Orders
+        </h3>
+
+        <p id="totalOrders">
+            0
+        </p>
+
     </div>
 
-    <div class="stat">
-        <h3>Pending</h3>
-        <p id="pendingOrders">0</p>
-    </div>
 
     <div class="stat">
-        <h3>Completed</h3>
-        <p id="completedOrders">0</p>
+
+        <h3>
+            Pending
+        </h3>
+
+        <p id="pendingOrders">
+            0
+        </p>
+
     </div>
 
+
     <div class="stat">
-        <h3>Total Sales</h3>
-        <p id="totalSales">₹0</p>
+
+        <h3>
+            Completed
+        </h3>
+
+        <p id="completedOrders">
+            0
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h3>
+            Total Sales
+        </h3>
+
+        <p id="totalSales">
+            ₹0
+        </p>
+
     </div>
 
 </div>
@@ -483,6 +461,7 @@
         📦 Customer Orders
     </h2>
 
+
     <div class="controls">
 
         <input
@@ -492,6 +471,7 @@
             oninput="filterOrders()"
         >
 
+
         <select
             id="statusFilter"
             onchange="filterOrders()"
@@ -499,10 +479,6 @@
 
             <option value="all">
                 All Orders
-            </option>
-
-            <option value="New">
-                New
             </option>
 
             <option value="Pending">
@@ -533,6 +509,7 @@
 
     </div>
 
+
     <div id="ordersList">
 
         <div class="empty">
@@ -557,6 +534,7 @@
 
 
     <div class="product-form">
+
 
         <input
             type="text"
@@ -612,48 +590,8 @@
         <input
             type="text"
             id="productImage"
-            placeholder="Example: halwa-100g.png"
-            oninput="previewProductImage()"
+            placeholder="Image path e.g. images/vada.png"
         >
-
-
-        <div class="image-help">
-
-            📸 <strong>Image:</strong>
-            Put your product image inside the
-            <strong>images</strong> folder in GitHub.
-
-            <br>
-
-            Then enter only the filename here.
-
-            <br>
-
-            Example:
-            <strong>halwa-100g.png</strong>
-
-            <br>
-
-            The website will automatically use:
-            <strong>images/halwa-100g.png</strong>
-
-        </div>
-
-
-        <div
-            id="imagePreviewBox"
-            class="image-preview-box"
-        >
-
-            <img
-                id="imagePreview"
-                src=""
-                alt="Image Preview"
-            >
-
-            <div id="imagePreviewMessage"></div>
-
-        </div>
 
 
         <button
@@ -742,7 +680,7 @@ import {
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyCuy68h-o0dcAVO7cg183xlQnBpttp2gAs",
+        "AIzaSyCuy68o-h0dcAVO7cg183xlQnBpttp2gAs",
 
     authDomain:
         "kayakani-bakery.firebaseapp.com",
@@ -1045,6 +983,7 @@ function displayOrders() {
     filtered.forEach(
         function(order) {
 
+
             const card =
                 document.createElement(
                     "div"
@@ -1081,6 +1020,10 @@ function displayOrders() {
                 formatDate(order);
 
 
+            /* =========================
+               ITEMS
+            ========================= */
+
             let itemsHTML = "";
 
 
@@ -1113,8 +1056,7 @@ function displayOrders() {
                             <div class="item-row">
 
                                 <span>
-                                    ${escapeHTML(name)}
-                                    × ${qty}
+                                    ${name} × ${qty}
                                 </span>
 
                                 <span>
@@ -1131,6 +1073,10 @@ function displayOrders() {
             }
 
 
+            /* =========================
+               TOTAL
+            ========================= */
+
             const total =
                 Number(
                     order.total ||
@@ -1138,6 +1084,10 @@ function displayOrders() {
                     0
                 );
 
+
+            /* =========================
+               CAKE DETAILS
+            ========================= */
 
             let cakeDetailsHTML = "";
 
@@ -1200,6 +1150,10 @@ function displayOrders() {
             }
 
 
+            /* =========================
+               ORDER CARD
+            ========================= */
+
             card.innerHTML = `
 
                 <div class="order-top">
@@ -1215,6 +1169,7 @@ function displayOrders() {
                             )}
 
                         </div>
+
 
                         <div class="order-date">
 
@@ -1240,20 +1195,6 @@ function displayOrders() {
                     <br>
 
                     📍 ${escapeHTML(address)}
-
-                    <br>
-
-                    💳 Payment:
-                    ${escapeHTML(
-                        order.payment || "-"
-                    )}
-
-                    <br>
-
-                    🚚 Order Type:
-                    ${escapeHTML(
-                        order.orderType || "-"
-                    )}
 
                 </div>
 
@@ -1290,11 +1231,6 @@ function displayOrders() {
                             this.value
                         )"
                     >
-
-                        ${statusOption(
-                            "New",
-                            orderStatus
-                        )}
 
                         ${statusOption(
                             "Pending",
@@ -1449,19 +1385,14 @@ function updateStats() {
                 "Pending";
 
 
-            if (
-                status === "New" ||
-                status === "Pending"
-            ) {
+            if (status === "Pending") {
 
                 pending++;
 
             }
 
 
-            if (
-                status === "Delivered"
-            ) {
+            if (status === "Delivered") {
 
                 completed++;
 
@@ -1643,15 +1574,9 @@ function(orderId) {
                 items += `
 
                     <p>
-
-                        ${escapeHTML(
-                            item.name
-                        )}
-
+                        ${escapeHTML(item.name)}
                         × ${qty}
-
                         = ₹${price * qty}
-
                     </p>
 
                 `;
@@ -1678,12 +1603,10 @@ function(orderId) {
                 🎂 Cake Details
             </h3>
 
-
             ${
                 order.cakeMessage
                 ? `
                     <p>
-
                         <strong>
                             Message on Cake:
                         </strong>
@@ -1691,18 +1614,15 @@ function(orderId) {
                         ${escapeHTML(
                             order.cakeMessage
                         )}
-
                     </p>
                   `
                 : ""
             }
 
-
             ${
                 order.cakeInstructions
                 ? `
                     <p>
-
                         <strong>
                             Special Instructions:
                         </strong>
@@ -1710,7 +1630,6 @@ function(orderId) {
                         ${escapeHTML(
                             order.cakeInstructions
                         )}
-
                     </p>
                   `
                 : ""
@@ -1734,17 +1653,6 @@ function(orderId) {
             "",
             "_blank"
         );
-
-
-    if (!printWindow) {
-
-        alert(
-            "Please allow pop-ups to print the order."
-        );
-
-        return;
-
-    }
 
 
     printWindow.document.write(`
@@ -1792,13 +1700,6 @@ function(orderId) {
                     order.address ||
                     order.location ||
                     ""
-                )}
-            </p>
-
-            <p>
-                Payment:
-                ${escapeHTML(
-                    order.payment || ""
                 )}
             </p>
 
@@ -1929,87 +1830,6 @@ function loadProducts() {
 
 
 /* =====================================================
-   NORMALIZE IMAGE PATH
-===================================================== */
-
-function normalizeImagePath(image) {
-
-    if (!image) {
-
-        return "";
-
-    }
-
-
-    image = String(image).trim();
-
-
-    if (image === "") {
-
-        return "";
-
-    }
-
-
-    /*
-       If user already enters:
-       images/vada.png
-
-       keep it unchanged.
-    */
-
-    if (
-        image.startsWith("images/")
-    ) {
-
-        return image;
-
-    }
-
-
-    /*
-       If user accidentally enters:
-       /images/vada.png
-
-       remove starting slash.
-    */
-
-    if (
-        image.startsWith("/images/")
-    ) {
-
-        return image.substring(1);
-
-    }
-
-
-    /*
-       If user enters a full GitHub URL,
-       keep it unchanged.
-    */
-
-    if (
-        image.startsWith("http://") ||
-        image.startsWith("https://")
-    ) {
-
-        return image;
-
-    }
-
-
-    /*
-       Otherwise automatically add
-       images/
-    */
-
-    return "images/" + image;
-
-}
-
-
-
-/* =====================================================
    DISPLAY PRODUCTS
 ===================================================== */
 
@@ -2054,49 +1874,22 @@ function displayProducts() {
                 "product-card";
 
 
-            const imagePath =
-                normalizeImagePath(
-                    product.image || ""
-                );
-
-
             let imageHTML = "";
 
 
-            if (imagePath) {
+            if (product.image) {
 
                 imageHTML = `
 
                     <img
                         class="product-image"
                         src="${escapeHTML(
-                            imagePath
+                            product.image
                         )}"
-                        alt="${escapeHTML(
-                            product.name ||
-                            "Product"
-                        )}"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        onerror="
+                            this.style.display='none'
+                        "
                     >
-
-                    <div
-                        class="no-image"
-                        style="display:none;"
-                    >
-                        📷
-                    </div>
-
-                `;
-
-            }
-
-            else {
-
-                imageHTML = `
-
-                    <div class="no-image">
-                        📷
-                    </div>
 
                 `;
 
@@ -2139,21 +1932,6 @@ function displayProducts() {
                     )}
 
                 </div>
-
-
-                ${
-                    imagePath
-                    ? `
-                        <div class="product-image-path">
-
-                            📸 ${escapeHTML(
-                                imagePath
-                            )}
-
-                        </div>
-                      `
-                    : ""
-                }
 
 
                 <div class="${
@@ -2230,93 +2008,6 @@ function displayProducts() {
 
 
 /* =====================================================
-   IMAGE PREVIEW
-===================================================== */
-
-window.previewProductImage =
-function() {
-
-    const input =
-        document.getElementById(
-            "productImage"
-        );
-
-
-    const box =
-        document.getElementById(
-            "imagePreviewBox"
-        );
-
-
-    const image =
-        document.getElementById(
-            "imagePreview"
-        );
-
-
-    const message =
-        document.getElementById(
-            "imagePreviewMessage"
-        );
-
-
-    const rawPath =
-        input.value.trim();
-
-
-    if (!rawPath) {
-
-        box.style.display =
-            "none";
-
-        return;
-
-    }
-
-
-    const imagePath =
-        normalizeImagePath(
-            rawPath
-        );
-
-
-    box.style.display =
-        "block";
-
-
-    image.src =
-        imagePath;
-
-
-    image.onload =
-        function() {
-
-            message.className =
-                "preview-success";
-
-            message.innerText =
-                "✅ Image found: " +
-                imagePath;
-
-        };
-
-
-    image.onerror =
-        function() {
-
-            message.className =
-                "preview-error";
-
-            message.innerText =
-                "❌ Image not found. Check the filename in GitHub.";
-
-        };
-
-};
-
-
-
-/* =====================================================
    ADD / UPDATE PRODUCT
 ===================================================== */
 
@@ -2350,19 +2041,13 @@ async function() {
         .value;
 
 
-    const rawImage =
+    const image =
         document
         .getElementById(
             "productImage"
         )
         .value
         .trim();
-
-
-    const image =
-        normalizeImagePath(
-            rawImage
-        );
 
 
     const message =
@@ -2383,6 +2068,7 @@ async function() {
 
         message.innerText =
             "Please enter product name, price and category.";
+
 
         return;
 
@@ -2436,19 +2122,6 @@ async function() {
                     image: image,
                     icon: "🍰",
                     available: true,
-
-                    /*
-                       Birthday Cake can still
-                       be recognized as a cake.
-                    */
-
-                    cake:
-                        name
-                        .toLowerCase()
-                        .includes(
-                            "birthday cake"
-                        ),
-
                     createdAt:
                         serverTimestamp()
                 }
@@ -2472,10 +2145,7 @@ async function() {
 
     catch (error) {
 
-        console.error(
-            "Save product error:",
-            error
-        );
+        console.error(error);
 
 
         message.style.color =
@@ -2562,9 +2232,6 @@ function(productId) {
         "block";
 
 
-    previewProductImage();
-
-
     window.scrollTo({
 
         top:
@@ -2642,18 +2309,6 @@ function clearProductForm() {
     ).style.display =
         "none";
 
-
-    document.getElementById(
-        "imagePreviewBox"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "productMessage"
-    ).innerText =
-        "";
-
 }
 
 
@@ -2689,9 +2344,7 @@ async function(
 
     catch (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
 
         alert(
@@ -2758,9 +2411,7 @@ async function(productId) {
 
     catch (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
 
         alert(
@@ -2792,9 +2443,7 @@ async function() {
 
     catch (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
     }
 
