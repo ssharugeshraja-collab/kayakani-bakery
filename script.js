@@ -214,13 +214,7 @@ const products = [
         image: "images/milk sweets.png"
     },
 
-    {
-        name: "halwa - 100g",
-        price: 50,
-        category: "sweets",
-        icon: "🍬",
-        image: "images/halwa-100g.png"
-    },
+   
 
 
     // DRINKS
