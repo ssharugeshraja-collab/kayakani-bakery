@@ -55,25 +55,22 @@
 </header>
 
 
+<!-- ================= HOME ================= -->
+
 <section id="home" class="hero">
 
     <div class="hero-text">
-
 
         <a
             href="#menu"
             class="order-button"
         >
-
             Order Now →
-
         </a>
 
     </div>
 
 </section>
-
-
 
 
 <!-- ================= FEATURES ================= -->
@@ -128,7 +125,6 @@
 </section>
 
 
-
 <!-- ================= MENU ================= -->
 
 <section
@@ -158,19 +154,21 @@
     </p>
 
 
+    <!-- ================= SEARCH ================= -->
 
-    <!-- CATEGORY BUTTONS -->
+    <div class="search-box">
 
-<div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search bakery items..."
+            oninput="searchProducts()"
+        >
 
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Search bakery items..."
-        oninput="searchProducts()"
-    >
+    </div>
 
-</div>
+
+    <!-- ================= CATEGORY BUTTONS ================= -->
 
     <div class="categories">
 
@@ -250,8 +248,7 @@
     </div>
 
 
-
-    <!-- PRODUCTS -->
+    <!-- ================= PRODUCTS ================= -->
 
     <div
         id="products"
@@ -260,7 +257,6 @@
 
 
 </section>
-
 
 
 <!-- ================= ABOUT ================= -->
@@ -294,63 +290,92 @@
     </div>
 
 
+    <div class="location">
 
-  <div class="location">
+        📍
 
-    📍
+        <h3>Our Location</h3>
 
-    <h3>Our Location</h3>
+        <p>
 
-    <p>
-        Dindigul Bus Stand,<br>
-        Spencer Complex,<br>
-        32, Dindigul, Tamil Nadu
-    </p>
+            Dindigul Bus Stand,<br>
+            Spencer Complex,<br>
+            32, Dindigul, Tamil Nadu
 
-    <a
-        href="https://www.google.com/maps/search/?api=1&query=Kayakani+Bakery+and+Sweets+Dindigul+Bus+Stand+Spencer+Complex"
-        target="_blank"
-        class="map-button"
-    >
-        📍 Open in Google Maps
-    </a>
+        </p>
 
-</div>
+
+        <a
+            href="https://www.google.com/maps/search/?api=1&query=Kayakani+Bakery+and+Sweets+Dindigul+Bus+Stand+Spencer+Complex"
+            target="_blank"
+            class="map-button"
+        >
+
+            📍 Open in Google Maps
+
+        </a>
+
+    </div>
+
 
 </section>
 
+
+<!-- ================= CONTACT ================= -->
+
 <section class="contact">
 
-    <p class="small-title">CONTACT US</p>
 
-    <h2>Order Fresh & Delicious 🍰</h2>
+    <p class="small-title">
 
-    <p>
-        Have a question or want to place an order?
-        Contact Kayakani Bakery & Sweets.
+        CONTACT US
+
     </p>
 
+
+    <h2>
+
+        Order Fresh & Delicious 🍰
+
+    </h2>
+
+
+    <p>
+
+        Have a question or want to place an order?
+        Contact Kayakani Bakery & Sweets.
+
+    </p>
+
+
     <div class="contact-buttons">
+
 
         <a
             href="tel:+919025611796"
             class="call-button"
         >
+
             📞 Call Bakery
+
         </a>
+
 
         <a
             href="https://wa.me/919025611796"
             target="_blank"
             class="whatsapp-contact"
         >
+
             📱 WhatsApp
+
         </a>
+
 
     </div>
 
-</section>
 
+</section>
 
 
 <!-- ================= CART ================= -->
@@ -392,6 +417,7 @@
         <h3>
 
             Total:
+
             ₹<span id="cartTotal">0</span>
 
         </h3>
@@ -409,8 +435,8 @@
 
     </div>
 
-</div>
 
+</div>
 
 
 <!-- ================= CHECKOUT ================= -->
@@ -441,7 +467,6 @@
         </h2>
 
 
-
         <!-- CUSTOMER NAME -->
 
         <label>
@@ -455,8 +480,8 @@
             type="text"
             id="customerName"
             placeholder="Enter your name"
+            autocomplete="name"
         >
-
 
 
         <!-- PHONE -->
@@ -472,8 +497,8 @@
             type="tel"
             id="customerPhone"
             placeholder="Enter mobile number"
+            autocomplete="tel"
         >
-
 
 
         <!-- ORDER TYPE -->
@@ -521,13 +546,13 @@
         >
 
 
-
         <!-- ADDRESS -->
 
         <div
             id="addressSection"
             class="address-section"
         >
+
 
             <label>
 
@@ -542,16 +567,17 @@
                 disabled
             ></textarea>
 
+
         </div>
 
 
-
-        <!-- CAKE CUSTOMIZATION -->
+        <!-- ================= CAKE CUSTOMIZATION ================= -->
 
         <div
             id="cakeCustomization"
             class="cake-customization"
         >
+
 
             <h3>
 
@@ -586,11 +612,11 @@
                 placeholder="Example: Chocolate decoration"
             ></textarea>
 
+
         </div>
 
 
-
-        <!-- ORDER SUMMARY -->
+        <!-- ================= ORDER SUMMARY ================= -->
 
         <div class="order-summary">
 
@@ -609,6 +635,7 @@
 
             <div class="summary-row">
 
+
                 <span>
 
                     Items Total
@@ -622,10 +649,12 @@
 
                 </strong>
 
+
             </div>
 
 
             <div class="summary-row">
+
 
                 <span>
 
@@ -640,10 +669,12 @@
 
                 </strong>
 
+
             </div>
 
 
             <div class="grand-total">
+
 
                 <span>
 
@@ -658,14 +689,14 @@
 
                 </strong>
 
+
             </div>
 
 
         </div>
 
 
-
-        <!-- PAYMENT -->
+        <!-- ================= PAYMENT ================= -->
 
         <label>
 
@@ -710,13 +741,13 @@
         >
 
 
-
-        <!-- UPI -->
+        <!-- ================= UPI ================= -->
 
         <div
             id="upiSection"
             class="upi-section"
         >
+
 
             <p>
 
@@ -741,11 +772,11 @@
 
             </button>
 
+
         </div>
 
 
-
-        <!-- WHATSAPP -->
+        <!-- ================= WHATSAPP ================= -->
 
         <button
             class="whatsapp-button"
@@ -759,49 +790,90 @@
 
     </div>
 
+
 </div>
+
 
 <!-- ================= ORDER CONFIRMATION ================= -->
 
-<div id="confirmationModal" class="confirmation-modal">
+<div
+    id="confirmationModal"
+    class="confirmation-modal"
+>
+
 
     <div class="confirmation-box">
 
+
         <div class="success-icon">
+
             ✓
+
         </div>
 
-        <h2>Order Placed Successfully!</h2>
 
-        <p>Thank you for ordering from</p>
+        <h2>
 
-        <h3>Kayakani Bakery & Sweets</h3>
+            Order Placed Successfully!
+
+        </h2>
+
+
+        <p>
+
+            Thank you for ordering from
+
+        </p>
+
+
+        <h3>
+
+            Kayakani Bakery & Sweets
+
+        </h3>
+
 
         <div class="order-id-box">
 
-            <span>Order ID</span>
+
+            <span>
+
+                Order ID
+
+            </span>
+
 
             <strong id="orderId">
+
                 KYK-000000
+
             </strong>
+
 
         </div>
 
+
         <p class="confirmation-note">
+
             Your order details have been prepared for WhatsApp.
+
         </p>
+
 
         <button
             class="done-button"
             onclick="closeConfirmation()"
         >
+
             Done
+
         </button>
+
 
     </div>
 
-</div>
 
+</div>
 
 
 <!-- ================= FOOTER ================= -->
@@ -826,26 +898,25 @@
 </footer>
 
 
+<!-- ================================================= -->
+<!-- FIREBASE -->
+<!-- ================================================= -->
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
+<!--
+    IMPORTANT:
+    Firebase is initialized inside script.js.
+    Do NOT add Firebase compat scripts here.
+-->
 
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyCuy68o-h0dcAVO7cg183xlQnBpttp2gAs",
-        authDomain: "kayakani-bakery.firebaseapp.com",
-        projectId: "kayakani-bakery",
-        storageBucket: "kayakani-bakery.firebasestorage.app",
-        messagingSenderId: "861879891216",
-        appId: "1:861879891216:web:a9c91ee27859ef9ef62195"
-    };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-</script>
+<!-- ================================================= -->
+<!-- MAIN JAVASCRIPT -->
+<!-- ================================================= -->
 
-<script src="script.js"></script>
+<script
+    type="module"
+    src="script.js"
+></script>
 
 
 </body>
