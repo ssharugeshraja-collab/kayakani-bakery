@@ -14,7 +14,7 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_FIREBASE_API_KEY",
+    apiKey: "AIzaSyCuy68o-h0dcAVO7cg183xlQnBpttp2gAs",
     authDomain: "kayakani-bakery.firebaseapp.com",
     projectId: "kayakani-bakery",
     storageBucket: "kayakani-bakery.firebasestorage.app",
