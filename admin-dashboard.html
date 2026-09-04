@@ -17,612 +17,343 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
             font-family: Arial, sans-serif;
-
             background: #f5f7f2;
-
             color: #222;
-
         }
-
-
-        /* =========================
-           HEADER
-        ========================= */
 
         header {
-
             background: #173b20;
-
             color: white;
-
             padding: 18px 25px;
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             flex-wrap: wrap;
-
             gap: 10px;
-
         }
-
 
         header h1 {
-
             margin: 0;
-
             font-size: 24px;
-
         }
-
 
         .logout-button {
-
             background: white;
-
             color: #173b20;
-
             border: none;
-
             padding: 10px 18px;
-
             border-radius: 8px;
-
             font-weight: bold;
-
             cursor: pointer;
-
         }
-
 
         .logout-button:hover {
-
             background: #ddd;
-
         }
-
-
-        /* =========================
-           MAIN
-        ========================= */
 
         .container {
-
             width: 95%;
-
             max-width: 1200px;
-
             margin: 25px auto;
-
         }
-
-
-        /* =========================
-           STATS
-        ========================= */
 
         .stats {
-
             display: grid;
-
             grid-template-columns:
                 repeat(auto-fit, minmax(180px, 1fr));
-
             gap: 15px;
-
             margin-bottom: 25px;
-
         }
-
 
         .stat {
-
             background: white;
-
             padding: 20px;
-
             border-radius: 15px;
-
             box-shadow: 0 3px 10px #0001;
-
         }
-
 
         .stat h3 {
-
             margin: 0 0 10px;
-
             color: #666;
-
             font-size: 15px;
-
         }
-
 
         .stat p {
-
             margin: 0;
-
             font-size: 28px;
-
             font-weight: bold;
-
             color: #173b20;
-
         }
-
-
-        /* =========================
-           SECTIONS
-        ========================= */
 
         .section {
-
             background: white;
-
             padding: 20px;
-
             border-radius: 15px;
-
             margin-bottom: 25px;
-
             box-shadow: 0 3px 10px #0001;
-
         }
-
 
         .section h2 {
-
             margin-top: 0;
-
             color: #173b20;
-
         }
-
-
-        /* =========================
-           SEARCH
-        ========================= */
 
         .controls {
-
             display: flex;
-
             gap: 10px;
-
             flex-wrap: wrap;
-
             margin-bottom: 20px;
-
         }
-
 
         .controls input,
         .controls select {
-
             padding: 11px;
-
             border: 1px solid #ccc;
-
             border-radius: 8px;
-
             font-size: 14px;
-
         }
-
 
         .controls input {
-
             flex: 1;
-
             min-width: 220px;
-
         }
-
-
-        /* =========================
-           ORDERS
-        ========================= */
 
         .order-card {
-
             border: 1px solid #ddd;
-
             border-radius: 12px;
-
             padding: 18px;
-
             margin-bottom: 15px;
-
             background: #fff;
-
         }
-
 
         .order-top {
-
             display: flex;
-
             justify-content: space-between;
-
             gap: 10px;
-
             flex-wrap: wrap;
-
         }
-
 
         .order-id {
-
             font-weight: bold;
-
             color: #173b20;
-
+            font-size: 18px;
         }
-
 
         .order-date {
-
             color: #777;
-
             font-size: 13px;
-
+            margin-top: 5px;
         }
-
 
         .customer {
-
             margin-top: 12px;
-
             line-height: 1.6;
-
         }
-
 
         .items {
-
             margin-top: 12px;
-
             background: #f7f7f7;
-
             padding: 12px;
-
             border-radius: 8px;
-
         }
-
 
         .item-row {
-
             display: flex;
-
             justify-content: space-between;
-
             padding: 5px 0;
-
+            gap: 10px;
         }
 
+        .cake-details {
+            margin-top: 12px;
+            padding: 13px;
+            background: #fff7e6;
+            border-left: 4px solid #f0ad4e;
+            border-radius: 8px;
+        }
+
+        .cake-details-title {
+            font-weight: bold;
+            color: #8a5a00;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .cake-detail-row {
+            margin-top: 6px;
+            line-height: 1.5;
+        }
 
         .order-total {
-
             margin-top: 12px;
-
             font-size: 18px;
-
             font-weight: bold;
-
             color: #173b20;
-
         }
-
 
         .order-actions {
-
             display: flex;
-
             gap: 8px;
-
             flex-wrap: wrap;
-
             margin-top: 15px;
-
         }
-
 
         .order-actions button {
-
             border: none;
-
             padding: 9px 12px;
-
             border-radius: 7px;
-
             cursor: pointer;
-
             font-weight: bold;
-
         }
-
 
         .status-select {
-
             padding: 9px;
-
             border-radius: 7px;
-
             border: 1px solid #ccc;
-
         }
-
 
         .delete-btn {
-
             background: #d9534f;
-
             color: white;
-
         }
-
 
         .print-btn {
-
             background: #173b20;
-
             color: white;
-
         }
-
-
-        /* =========================
-           PRODUCT FORM
-        ========================= */
 
         .product-form {
-
             display: grid;
-
             grid-template-columns:
                 repeat(auto-fit, minmax(180px, 1fr));
-
             gap: 12px;
-
         }
-
 
         .product-form input,
         .product-form select {
-
             width: 100%;
-
             padding: 12px;
-
             border: 1px solid #ccc;
-
             border-radius: 8px;
-
         }
-
 
         .product-form button {
-
             background: #173b20;
-
             color: white;
-
             border: none;
-
             padding: 12px;
-
             border-radius: 8px;
-
             font-weight: bold;
-
             cursor: pointer;
-
         }
-
 
         .cancel-edit {
-
             background: #777 !important;
-
         }
-
-
-        /* =========================
-           PRODUCTS
-        ========================= */
 
         .products-list {
-
             display: grid;
-
             grid-template-columns:
                 repeat(auto-fit, minmax(240px, 1fr));
-
             gap: 15px;
-
             margin-top: 20px;
-
         }
-
 
         .product-card {
-
             border: 1px solid #ddd;
-
             border-radius: 12px;
-
             padding: 15px;
-
             background: white;
-
         }
-
 
         .product-image {
-
             width: 100%;
-
             height: 150px;
-
             object-fit: contain;
-
             border-radius: 10px;
-
             background: #f7f7f7;
-
             margin-bottom: 10px;
-
         }
-
 
         .product-name {
-
             font-weight: bold;
-
             font-size: 17px;
-
             color: #173b20;
-
         }
-
 
         .product-price {
-
             margin-top: 5px;
-
             font-weight: bold;
-
         }
-
 
         .product-category {
-
             color: #777;
-
             font-size: 13px;
-
             margin-top: 5px;
-
         }
-
 
         .available {
-
             color: green;
-
             font-weight: bold;
-
         }
-
 
         .unavailable {
-
             color: red;
-
             font-weight: bold;
-
         }
-
 
         .product-actions {
-
             display: flex;
-
             gap: 7px;
-
             flex-wrap: wrap;
-
             margin-top: 12px;
-
         }
-
 
         .product-actions button {
-
             border: none;
-
             padding: 8px 10px;
-
             border-radius: 7px;
-
             cursor: pointer;
-
             font-weight: bold;
-
         }
-
 
         .edit-btn {
-
             background: #f0ad4e;
-
             color: white;
-
         }
-
 
         .availability-btn {
-
             background: #638d32;
-
             color: white;
-
         }
-
 
         .product-delete {
-
             background: #d9534f;
-
             color: white;
-
         }
-
-
-        /* =========================
-           EMPTY
-        ========================= */
 
         .empty {
-
             text-align: center;
-
             padding: 30px;
-
             color: #777;
-
         }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
 
         @media (max-width: 600px) {
 
             header {
-
                 text-align: center;
-
                 justify-content: center;
-
             }
 
             header h1 {
-
                 width: 100%;
+            }
 
+            .item-row {
+                flex-direction: column;
             }
 
         }
@@ -645,7 +376,6 @@
         🍰 Kayakani Bakery Admin
     </h1>
 
-
     <button
         class="logout-button"
         onclick="logout()"
@@ -665,7 +395,6 @@
 ===================================================== -->
 
 <div class="stats">
-
 
     <div class="stat">
 
@@ -718,7 +447,6 @@
 
     </div>
 
-
 </div>
 
 
@@ -729,14 +457,12 @@
 
 <div class="section">
 
-
     <h2>
         📦 Customer Orders
     </h2>
 
 
     <div class="controls">
-
 
         <input
             type="text"
@@ -781,7 +507,6 @@
 
         </select>
 
-
     </div>
 
 
@@ -793,7 +518,6 @@
 
     </div>
 
-
 </div>
 
 
@@ -803,7 +527,6 @@
 ===================================================== -->
 
 <div class="section">
-
 
     <h2 id="productFormTitle">
         ➕ Add New Product
@@ -888,7 +611,6 @@
             Cancel Edit
         </button>
 
-
     </div>
 
 
@@ -909,7 +631,6 @@
 
     </div>
 
-
 </div>
 
 
@@ -924,52 +645,30 @@
 <script type="module">
 
 
-/* =====================================================
-   IMPORT FIREBASE
-===================================================== */
-
 import {
-
     initializeApp
-
 } from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import {
-
     getAuth,
-
     onAuthStateChanged,
-
     signOut
-
 } from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import {
-
     getFirestore,
-
     collection,
-
     onSnapshot,
-
     doc,
-
     updateDoc,
-
     deleteDoc,
-
     addDoc,
-
     serverTimestamp
-
 } from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
@@ -1000,11 +699,6 @@ const firebaseConfig = {
 
 };
 
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
 
 const app =
     initializeApp(firebaseConfig);
@@ -1038,69 +732,52 @@ let authChecked = false;
 ===================================================== */
 
 onAuthStateChanged(
-
     auth,
-
     function(user) {
 
-
         if (user) {
-
 
             console.log(
                 "✅ Admin logged in:",
                 user.email
             );
 
-
             authChecked = true;
-
 
             loadOrders();
 
             loadProducts();
 
-
         }
 
         else {
-
 
             console.log(
                 "⏳ Checking login session..."
             );
 
-
             setTimeout(
-
                 function() {
 
-
                     if (!authChecked) {
-
 
                         console.log(
                             "❌ No admin session found."
                         );
 
-
                         window.location.replace(
                             "admin.html"
                         );
 
-
                     }
 
                 },
-
                 3000
-
             );
 
         }
 
     }
-
 );
 
 
@@ -1111,25 +788,20 @@ onAuthStateChanged(
 
 function loadOrders() {
 
-
     const ordersRef =
         collection(db, "orders");
 
 
     onSnapshot(
-
         ordersRef,
 
         function(snapshot) {
-
 
             allOrders = [];
 
 
             snapshot.forEach(
-
                 function(item) {
-
 
                     allOrders.push({
 
@@ -1140,19 +812,16 @@ function loadOrders() {
                     });
 
                 }
-
             );
 
 
             allOrders.sort(
-
                 function(a, b) {
 
                     return getTime(b) -
                            getTime(a);
 
                 }
-
             );
 
 
@@ -1170,7 +839,6 @@ function loadOrders() {
             );
 
         }
-
     );
 
 }
@@ -1182,7 +850,6 @@ function loadOrders() {
 ===================================================== */
 
 function getTime(order) {
-
 
     if (
         order.createdAt &&
@@ -1219,7 +886,6 @@ function getTime(order) {
 
 function displayOrders() {
 
-
     const container =
         document.getElementById(
             "ordersList"
@@ -1245,9 +911,7 @@ function displayOrders() {
 
     const filtered =
         allOrders.filter(
-
             function(order) {
-
 
                 const customer =
                     String(
@@ -1264,8 +928,12 @@ function displayOrders() {
                     ).toLowerCase();
 
 
-                const id =
-                    order.id.toLowerCase();
+                const orderId =
+                    String(
+                        order.orderId ||
+                        order.id ||
+                        ""
+                    ).toLowerCase();
 
 
                 const matchesSearch =
@@ -1274,7 +942,7 @@ function displayOrders() {
 
                     phone.includes(search) ||
 
-                    id.includes(search);
+                    orderId.includes(search);
 
 
                 const orderStatus =
@@ -1294,7 +962,6 @@ function displayOrders() {
                 );
 
             }
-
         );
 
 
@@ -1314,7 +981,6 @@ function displayOrders() {
 
 
     filtered.forEach(
-
         function(order) {
 
 
@@ -1354,6 +1020,10 @@ function displayOrders() {
                 formatDate(order);
 
 
+            /* =========================
+               ITEMS
+            ========================= */
+
             let itemsHTML = "";
 
 
@@ -1361,11 +1031,8 @@ function displayOrders() {
                 Array.isArray(order.items)
             ) {
 
-
                 order.items.forEach(
-
                     function(item) {
-
 
                         const name =
                             item.name ||
@@ -1401,11 +1068,14 @@ function displayOrders() {
                         `;
 
                     }
-
                 );
 
             }
 
+
+            /* =========================
+               TOTAL
+            ========================= */
 
             const total =
                 Number(
@@ -1415,18 +1085,92 @@ function displayOrders() {
                 );
 
 
+            /* =========================
+               CAKE DETAILS
+            ========================= */
+
+            let cakeDetailsHTML = "";
+
+
+            if (
+                order.cakeMessage ||
+                order.cakeInstructions
+            ) {
+
+                cakeDetailsHTML = `
+
+                    <div class="cake-details">
+
+                        <div class="cake-details-title">
+                            🎂 Cake Details
+                        </div>
+
+
+                        ${
+                            order.cakeMessage
+                            ? `
+                                <div class="cake-detail-row">
+
+                                    <strong>
+                                        Message on Cake:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        order.cakeMessage
+                                    )}
+
+                                </div>
+                              `
+                            : ""
+                        }
+
+
+                        ${
+                            order.cakeInstructions
+                            ? `
+                                <div class="cake-detail-row">
+
+                                    <strong>
+                                        Special Instructions:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        order.cakeInstructions
+                                    )}
+
+                                </div>
+                              `
+                            : ""
+                        }
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =========================
+               ORDER CARD
+            ========================= */
+
             card.innerHTML = `
 
                 <div class="order-top">
 
                     <div>
 
-                  <div class="order-id">
+                        <div class="order-id">
 
-    Order:
-    ${order.orderId || order.id}
+                            Order:
+                            ${escapeHTML(
+                                order.orderId ||
+                                order.id
+                            )}
 
-</div>
+                        </div>
+
+
                         <div class="order-date">
 
                             ${date}
@@ -1441,16 +1185,16 @@ function displayOrders() {
                 <div class="customer">
 
                     <strong>
-                        👤 ${customerName}
+                        👤 ${escapeHTML(customerName)}
                     </strong>
 
                     <br>
 
-                    📞 ${phone}
+                    📞 ${escapeHTML(phone)}
 
                     <br>
 
-                    📍 ${address}
+                    📍 ${escapeHTML(address)}
 
                 </div>
 
@@ -1464,6 +1208,9 @@ function displayOrders() {
                     ${itemsHTML}
 
                 </div>
+
+
+                ${cakeDetailsHTML}
 
 
                 <div class="order-total">
@@ -1524,7 +1271,9 @@ function displayOrders() {
                             '${order.id}'
                         )"
                     >
+
                         🖨 Print
+
                     </button>
 
 
@@ -1534,7 +1283,9 @@ function displayOrders() {
                             '${order.id}'
                         )"
                     >
+
                         🗑 Delete
+
                     </button>
 
 
@@ -1546,8 +1297,24 @@ function displayOrders() {
             container.appendChild(card);
 
         }
-
     );
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -1562,14 +1329,15 @@ function statusOption(
     current
 ) {
 
-
     return `
 
         <option
             value="${value}"
             ${value === current ? "selected" : ""}
         >
+
             ${value}
+
         </option>
 
     `;
@@ -1596,7 +1364,6 @@ window.filterOrders = function() {
 
 function updateStats() {
 
-
     document.getElementById(
         "totalOrders"
     ).innerText =
@@ -1611,9 +1378,7 @@ function updateStats() {
 
 
     allOrders.forEach(
-
         function(order) {
-
 
             const status =
                 order.status ||
@@ -1641,7 +1406,6 @@ function updateStats() {
             );
 
         }
-
     );
 
 
@@ -1672,16 +1436,11 @@ function updateStats() {
 
 window.changeOrderStatus =
 async function(
-
     orderId,
-
     newStatus
-
 ) {
 
-
     try {
-
 
         await updateDoc(
 
@@ -1692,21 +1451,16 @@ async function(
             ),
 
             {
-
                 status: newStatus
-
             }
 
         );
-
 
     }
 
     catch (error) {
 
-
         console.error(error);
-
 
         alert(
             "❌ Could not update order."
@@ -1725,7 +1479,6 @@ async function(
 window.deleteOrder =
 async function(orderId) {
 
-
     if (
         !confirm(
             "Delete this order?"
@@ -1739,7 +1492,6 @@ async function(orderId) {
 
     try {
 
-
         await deleteDoc(
 
             doc(
@@ -1750,14 +1502,11 @@ async function(orderId) {
 
         );
 
-
     }
 
     catch (error) {
 
-
         console.error(error);
-
 
         alert(
             "❌ Could not delete order."
@@ -1776,17 +1525,14 @@ async function(orderId) {
 window.printOrder =
 function(orderId) {
 
-
     const order =
         allOrders.find(
-
             function(item) {
 
                 return item.id ===
                        orderId;
 
             }
-
         );
 
 
@@ -1810,11 +1556,8 @@ function(orderId) {
         Array.isArray(order.items)
     ) {
 
-
         order.items.forEach(
-
             function(item) {
-
 
                 const qty =
                     item.quantity ||
@@ -1831,7 +1574,7 @@ function(orderId) {
                 items += `
 
                     <p>
-                        ${item.name}
+                        ${escapeHTML(item.name)}
                         × ${qty}
                         = ₹${price * qty}
                     </p>
@@ -1839,8 +1582,60 @@ function(orderId) {
                 `;
 
             }
-
         );
+
+    }
+
+
+    let cakeDetails = "";
+
+
+    if (
+        order.cakeMessage ||
+        order.cakeInstructions
+    ) {
+
+        cakeDetails = `
+
+            <hr>
+
+            <h3>
+                🎂 Cake Details
+            </h3>
+
+            ${
+                order.cakeMessage
+                ? `
+                    <p>
+                        <strong>
+                            Message on Cake:
+                        </strong>
+
+                        ${escapeHTML(
+                            order.cakeMessage
+                        )}
+                    </p>
+                  `
+                : ""
+            }
+
+            ${
+                order.cakeInstructions
+                ? `
+                    <p>
+                        <strong>
+                            Special Instructions:
+                        </strong>
+
+                        ${escapeHTML(
+                            order.cakeInstructions
+                        )}
+                    </p>
+                  `
+                : ""
+            }
+
+        `;
 
     }
 
@@ -1879,22 +1674,44 @@ function(orderId) {
             </h1>
 
             <h2>
-                Order ${order.id}
+                Order ${
+                    escapeHTML(
+                        order.orderId ||
+                        order.id
+                    )
+                }
             </h2>
 
             <p>
                 Customer:
-                ${customerName}
+                ${escapeHTML(customerName)}
             </p>
 
             <p>
                 Phone:
-                ${order.phone || ""}
+                ${escapeHTML(
+                    order.phone || ""
+                )}
+            </p>
+
+            <p>
+                Address:
+                ${escapeHTML(
+                    order.address ||
+                    order.location ||
+                    ""
+                )}
             </p>
 
             <hr>
 
+            <h3>
+                Items
+            </h3>
+
             ${items}
+
+            ${cakeDetails}
 
             <hr>
 
@@ -1911,7 +1728,6 @@ function(orderId) {
 
     printWindow.document.close();
 
-
     printWindow.print();
 
 };
@@ -1923,7 +1739,6 @@ function(orderId) {
 ===================================================== */
 
 function formatDate(order) {
-
 
     const time =
         getTime(order);
@@ -1949,7 +1764,6 @@ function formatDate(order) {
 
 function loadProducts() {
 
-
     const productsRef =
         collection(
             db,
@@ -1963,14 +1777,11 @@ function loadProducts() {
 
         function(snapshot) {
 
-
             allProducts = [];
 
 
             snapshot.forEach(
-
                 function(item) {
-
 
                     allProducts.push({
 
@@ -1981,12 +1792,10 @@ function loadProducts() {
                     });
 
                 }
-
             );
 
 
             allProducts.sort(
-
                 function(a, b) {
 
                     return String(
@@ -1998,7 +1807,6 @@ function loadProducts() {
                     );
 
                 }
-
             );
 
 
@@ -2008,12 +1816,10 @@ function loadProducts() {
 
         function(error) {
 
-
             console.error(
                 "Products error:",
                 error
             );
-
 
         }
 
@@ -2029,7 +1835,6 @@ function loadProducts() {
 
 function displayProducts() {
 
-
     const container =
         document.getElementById(
             "productsList"
@@ -2037,7 +1842,6 @@ function displayProducts() {
 
 
     if (allProducts.length === 0) {
-
 
         container.innerHTML = `
 
@@ -2049,7 +1853,6 @@ function displayProducts() {
 
         `;
 
-
         return;
 
     }
@@ -2059,9 +1862,7 @@ function displayProducts() {
 
 
     allProducts.forEach(
-
         function(product) {
-
 
             const card =
                 document.createElement(
@@ -2078,12 +1879,13 @@ function displayProducts() {
 
             if (product.image) {
 
-
                 imageHTML = `
 
                     <img
                         class="product-image"
-                        src="${product.image}"
+                        src="${escapeHTML(
+                            product.image
+                        )}"
                         onerror="
                             this.style.display='none'
                         "
@@ -2105,7 +1907,10 @@ function displayProducts() {
 
                 <div class="product-name">
 
-                    ${product.name || "Product"}
+                    ${escapeHTML(
+                        product.name ||
+                        "Product"
+                    )}
 
                 </div>
 
@@ -2122,7 +1927,9 @@ function displayProducts() {
                 <div class="product-category">
 
                     Category:
-                    ${product.category || "-"}
+                    ${escapeHTML(
+                        product.category || "-"
+                    )}
 
                 </div>
 
@@ -2151,7 +1958,9 @@ function displayProducts() {
                             '${product.id}'
                         )"
                     >
+
                         ✏ Edit
+
                     </button>
 
 
@@ -2178,7 +1987,9 @@ function displayProducts() {
                             '${product.id}'
                         )"
                     >
+
                         🗑 Delete
+
                     </button>
 
 
@@ -2190,7 +2001,6 @@ function displayProducts() {
             container.appendChild(card);
 
         }
-
     );
 
 }
@@ -2203,7 +2013,6 @@ function displayProducts() {
 
 window.saveProduct =
 async function() {
-
 
     const name =
         document
@@ -2253,7 +2062,6 @@ async function() {
         category === ""
     ) {
 
-
         message.style.color =
             "red";
 
@@ -2269,11 +2077,7 @@ async function() {
 
     try {
 
-
         if (editingProductId) {
-
-
-            /* UPDATE */
 
             await updateDoc(
 
@@ -2284,15 +2088,10 @@ async function() {
                 ),
 
                 {
-
                     name: name,
-
                     price: price,
-
                     category: category,
-
                     image: image
-
                 }
 
             );
@@ -2305,13 +2104,9 @@ async function() {
             message.innerText =
                 "✅ Product updated!";
 
-
         }
 
         else {
-
-
-            /* ADD */
 
             await addDoc(
 
@@ -2321,22 +2116,14 @@ async function() {
                 ),
 
                 {
-
                     name: name,
-
                     price: price,
-
                     category: category,
-
                     image: image,
-
                     icon: "🍰",
-
                     available: true,
-
                     createdAt:
                         serverTimestamp()
-
                 }
 
             );
@@ -2354,11 +2141,9 @@ async function() {
 
         clearProductForm();
 
-
     }
 
     catch (error) {
-
 
         console.error(error);
 
@@ -2383,17 +2168,14 @@ async function() {
 window.editProduct =
 function(productId) {
 
-
     const product =
         allProducts.find(
-
             function(item) {
 
                 return item.id ===
                        productId;
 
             }
-
         );
 
 
@@ -2452,7 +2234,8 @@ function(productId) {
 
     window.scrollTo({
 
-        top: document
+        top:
+            document
             .getElementById(
                 "productFormTitle"
             )
@@ -2484,7 +2267,6 @@ function() {
 ===================================================== */
 
 function clearProductForm() {
-
 
     editingProductId =
         null;
@@ -2537,16 +2319,11 @@ function clearProductForm() {
 
 window.toggleProductAvailability =
 async function(
-
     productId,
-
     currentStatus
-
 ) {
 
-
     try {
-
 
         await updateDoc(
 
@@ -2557,19 +2334,15 @@ async function(
             ),
 
             {
-
                 available:
                     !currentStatus
-
             }
 
         );
 
-
     }
 
     catch (error) {
-
 
         console.error(error);
 
@@ -2591,17 +2364,14 @@ async function(
 window.deleteProduct =
 async function(productId) {
 
-
     const product =
         allProducts.find(
-
             function(item) {
 
                 return item.id ===
                        productId;
 
             }
-
         );
 
 
@@ -2627,7 +2397,6 @@ async function(productId) {
 
     try {
 
-
         await deleteDoc(
 
             doc(
@@ -2638,11 +2407,9 @@ async function(productId) {
 
         );
 
-
     }
 
     catch (error) {
-
 
         console.error(error);
 
@@ -2664,22 +2431,17 @@ async function(productId) {
 window.logout =
 async function() {
 
-
     try {
 
-
         await signOut(auth);
-
 
         window.location.replace(
             "admin.html"
         );
 
-
     }
 
     catch (error) {
-
 
         console.error(error);
 
