@@ -15,7 +15,7 @@ import {
 
 const firebaseConfig = {
 
-    apiKey: "YOUR_NEW_API_KEY",
+    apiKey: "AIzaSyCuy68o-h0dcAVO7cg183xlQnBpttp2gAs",
 
     authDomain:
         "kayakani-bakery.firebaseapp.com",
