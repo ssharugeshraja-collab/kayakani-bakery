@@ -1,403 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Kayakani Bakery - Admin Login</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
-            background: #fffaf0;
-
+            background: linear-gradient(135deg, #e8f5e9, #ffffff);
             display: flex;
             justify-content: center;
             align-items: center;
-
-            min-height: 100vh;
         }
 
         .login-box {
             width: 90%;
-            max-width: 400px;
-
+            max-width: 420px;
             background: white;
-
             padding: 35px;
-
-            border-radius: 20px;
-
-            box-shadow: 0 10px 30px #0002;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
         .logo {
             text-align: center;
-
-            font-size: 30px;
-
-            font-weight: bold;
-
-            color: #173b20;
-
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
-        .subtitle {
+        .logo h1 {
+            color: #238b45;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .logo p {
+            color: #666;
+            margin-top: 8px;
+        }
+
+        h2 {
             text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
 
-            color: #777;
-
-            margin-bottom: 30px;
-
-            line-height: 1.5;
+        .form-group {
+            margin-bottom: 18px;
         }
 
         label {
             display: block;
-
-            margin: 15px 0 7px;
-
+            margin-bottom: 7px;
             font-weight: bold;
-
-            color: #173b20;
+            color: #333;
         }
 
         input {
             width: 100%;
-
             padding: 13px;
-
             border: 1px solid #ccc;
-
-            border-radius: 10px;
-
-            font-size: 15px;
-
+            border-radius: 8px;
+            font-size: 16px;
             outline: none;
         }
 
         input:focus {
-            border-color: #173b20;
+            border-color: #238b45;
+            box-shadow: 0 0 0 2px rgba(35, 139, 69, 0.1);
         }
 
-        .login-button {
+        button {
             width: 100%;
-
-            margin-top: 25px;
-
             padding: 14px;
-
             border: none;
-
-            border-radius: 10px;
-
-            background: #173b20;
-
+            border-radius: 8px;
+            background: #238b45;
             color: white;
-
-            font-size: 16px;
-
+            font-size: 17px;
             font-weight: bold;
-
             cursor: pointer;
         }
 
-        .login-button:hover {
-            background: #638d32;
+        button:hover {
+            background: #176b32;
         }
 
         #message {
             text-align: center;
-
-            margin-top: 15px;
-
-            min-height: 20px;
+            margin-top: 18px;
+            min-height: 22px;
+            font-size: 14px;
         }
 
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #238b45;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
     </style>
-
 </head>
-
 
 <body>
 
+    <div class="login-box">
 
-<div class="login-box">
+        <div class="logo">
+            <h1>Kayakani Bakery & Sweets</h1>
+            <p>Admin Panel</p>
+        </div>
 
+        <h2>Admin Login</h2>
 
-    <div class="logo">
-        🍰 Kayakani
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="email">Admin Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="username"
+                    placeholder="Enter admin email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="current-password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <button type="submit" id="loginButton">
+                Login
+            </button>
+
+        </form>
+
+        <div id="message"></div>
+
+        <div class="back-link">
+            <a href="index.html">← Back to Bakery</a>
+        </div>
+
     </div>
 
 
-    <div class="subtitle">
+    <!-- Firebase Login -->
 
-        Bakery & Sweets<br>
+    <script type="module">
 
-        <strong>Admin Login</strong>
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-    </div>
-
-
-    <label>
-        Email
-    </label>
-
-
-    <input
-        type="email"
-        id="email"
-        placeholder="Enter admin email"
-    >
-
-
-    <label>
-        Password
-    </label>
-
-
-    <input
-        type="password"
-        id="password"
-        placeholder="Enter password"
-    >
-
-
-    <button
-        class="login-button"
-        onclick="login()"
-    >
-        🔐 Login
-    </button>
-
-
-    <p id="message"></p>
-
-
-</div>
-
-
-
-<script type="module">
-
-
-/* =====================================================
-   FIREBASE
-===================================================== */
-
-import {
-    initializeApp
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    setPersistence,
-    browserLocalPersistence
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
-
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyCuy68o-h0dcAVO7cg183xlQnBpttp2gAs",
-
-    authDomain:
-        "kayakani-bakery.firebaseapp.com",
-
-    projectId:
-        "kayakani-bakery",
-
-    storageBucket:
-        "kayakani-bakery.firebasestorage.app",
-
-    messagingSenderId:
-        "861879891216",
-
-    appId:
-        "1:861879891216:web:a9c91ee27859ef9ef62195"
-
-};
-
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-const app =
-    initializeApp(firebaseConfig);
-
-
-const auth =
-    getAuth(app);
-
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-window.login = async function() {
-
-
-    const email =
-        document
-        .getElementById("email")
-        .value
-        .trim();
-
-
-    const password =
-        document
-        .getElementById("password")
-        .value;
-
-
-    const message =
-        document
-        .getElementById("message");
-
-
-
-    /* EMPTY CHECK */
-
-    if (
-        email === "" ||
-        password === ""
-    ) {
-
-        message.style.color = "red";
-
-        message.innerText =
-            "Please enter email and password.";
-
-        return;
-
-    }
-
-
-
-    message.style.color =
-        "#173b20";
-
-    message.innerText =
-        "Logging in...";
-
-
-
-    try {
-
-
-        /* SAVE LOGIN */
-
-        await setPersistence(
-            auth,
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            setPersistence,
             browserLocalPersistence
-        );
+        } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-        /* LOGIN */
+        // Firebase configuration
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-
-        message.style.color =
-            "green";
-
-        message.innerText =
-            "✅ Login successful!";
+        const firebaseConfig = {
+            apiKey: "AIzaSyCuy68h-o0dcAVO7cg183xlQnBpttp2gAs",
+            authDomain: "kayakani-bakery.firebaseapp.com",
+            projectId: "kayakani-bakery",
+            storageBucket: "kayakani-bakery.firebasestorage.app",
+            messagingSenderId: "861879891216",
+            appId: "1:861879891216:web:a9c91ee27859ef9ef62195"
+        };
 
 
-        /* OPEN DASHBOARD */
+        // Initialize Firebase
 
-        window.location.replace(
-            "admin-dashboard.html"
-        );
-
-
-    }
-
-    catch (error) {
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
 
-        console.error(
-            "Login error:",
-            error
-        );
+        // Login
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const password =
+                    document.getElementById("password").value;
+
+                const message =
+                    document.getElementById("message");
+
+                const loginButton =
+                    document.getElementById("loginButton");
 
 
-        message.style.color =
-            "red";
+                // Check fields
+
+                if (email === "" || password === "") {
+
+                    message.style.color = "red";
+                    message.innerText =
+                        "Please enter email and password.";
+
+                    return;
+                }
 
 
-        if (
-            error.code ===
-            "auth/invalid-credential"
-        ) {
+                // Loading
 
-            message.innerText =
-                "❌ Invalid email or password.";
+                loginButton.disabled = true;
+                loginButton.innerText = "Logging in...";
 
-        }
-
-        else if (
-            error.code ===
-            "auth/user-not-found"
-        ) {
-
-            message.innerText =
-                "❌ Admin account not found.";
-
-        }
-
-        else if (
-            error.code ===
-            "auth/wrong-password"
-        ) {
-
-            message.innerText =
-                "❌ Wrong password.";
-
-        }
-
-        else {
-
-            message.innerText =
-                "❌ " + error.message;
-
-        }
-
-    }
-
-};
+                message.style.color = "#555";
+                message.innerText = "Please wait...";
 
 
-</script>
+                try {
 
+                    // Keep user logged in
+
+                    await setPersistence(
+                        auth,
+                        browserLocalPersistence
+                    );
+
+
+                    // Firebase login
+
+                    const credential =
+                        await signInWithEmailAndPassword(
+                            auth,
+                            email,
+                            password
+                        );
+
+
+                    const user = credential.user;
+
+
+                    console.log(
+                        "✅ Login successful"
+                    );
+
+                    console.log(
+                        "Admin UID:",
+                        user.uid
+                    );
+
+                    console.log(
+                        "Admin Email:",
+                        user.email
+                    );
+
+
+                    // Verify current user
+
+                    if (!auth.currentUser) {
+
+                        throw new Error(
+                            "Firebase login succeeded, but the login session was not saved."
+                        );
+                    }
+
+
+                    message.style.color = "green";
+
+                    message.innerText =
+                        "✅ Login successful! Opening dashboard...";
+
+
+                    // Small delay so Firebase session is saved
+
+                    setTimeout(function() {
+
+                        window.location.href =
+                            "./admin-dashboard.html";
+
+                    }, 500);
+
+
+                } catch (error) {
+
+                    console.error(
+                        "❌ Login error:",
+                        error
+                    );
+
+
+                    loginButton.disabled = false;
+                    loginButton.innerText = "Login";
+
+
+                    message.style.color = "red";
+
+
+                    if (
+                        error.code ===
+                        "auth/invalid-credential"
+                    ) {
+
+                        message.innerText =
+                            "❌ Invalid email or password.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/user-not-found"
+                    ) {
+
+                        message.innerText =
+                            "❌ Admin account not found.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/wrong-password"
+                    ) {
+
+                        message.innerText =
+                            "❌ Incorrect password.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/invalid-email"
+                    ) {
+
+                        message.innerText =
+                            "❌ Invalid email address.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/network-request-failed"
+                    ) {
+
+                        message.innerText =
+                            "❌ Network error. Check your internet connection.";
+
+                    }
+
+                    else {
+
+                        message.innerText =
+                            "❌ Login failed: " +
+                            error.message;
+
+                    }
+
+                }
+
+            });
+
+    </script>
 
 </body>
-
 </html>
