@@ -61,8 +61,7 @@
 
         .stats {
             display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-bottom: 25px;
         }
@@ -226,8 +225,7 @@
 
         .product-form {
             display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 12px;
         }
 
@@ -291,8 +289,7 @@
 
         .products-list {
             display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
@@ -715,7 +712,6 @@ import {
 
 import {
     getAuth,
-    onAuthStateChanged,
     signOut
 } from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
@@ -785,34 +781,71 @@ let allProducts = [];
 
 let editingProductId = null;
 
-let authChecked = false;
-
 
 
 /* =====================================================
    AUTHENTICATION
 ===================================================== */
 
-onAuthStateChanged(auth, function(user) {
+/*
+   IMPORTANT:
+   We wait for Firebase to completely restore
+   the login session before checking auth.currentUser.
+*/
 
-    if (user) {
+async function checkAdminLogin() {
 
-        console.log("✅ Admin logged in:", user.email);
+    try {
 
-        authChecked = true;
+        await auth.authStateReady();
 
-        loadOrders();
-        loadProducts();
+        const user = auth.currentUser;
 
-    } else {
 
-        console.log("❌ No admin session found.");
+        if (user) {
 
-        window.location.replace("admin.html");
+            console.log(
+                "✅ Admin logged in:",
+                user.email
+            );
+
+            loadOrders();
+
+            loadProducts();
+
+        }
+
+        else {
+
+            console.log(
+                "❌ No admin session found."
+            );
+
+            window.location.replace(
+                "admin.html"
+            );
+
+        }
 
     }
 
-});
+    catch (error) {
+
+        console.error(
+            "Authentication error:",
+            error
+        );
+
+        alert(
+            "❌ Unable to verify admin login."
+        );
+
+    }
+
+}
+
+
+checkAdminLogin();
 
 
 
@@ -823,10 +856,14 @@ onAuthStateChanged(auth, function(user) {
 function loadOrders() {
 
     const ordersRef =
-        collection(db, "orders");
+        collection(
+            db,
+            "orders"
+        );
 
 
     onSnapshot(
+
         ordersRef,
 
         function(snapshot) {
@@ -1913,7 +1950,8 @@ function normalizeImagePath(image) {
     }
 
 
-    image = String(image).trim();
+    image =
+        String(image).trim();
 
 
     if (image === "") {
@@ -1922,13 +1960,6 @@ function normalizeImagePath(image) {
 
     }
 
-
-    /*
-       If user already enters:
-       images/vada.png
-
-       keep it unchanged.
-    */
 
     if (
         image.startsWith("images/")
@@ -1939,13 +1970,6 @@ function normalizeImagePath(image) {
     }
 
 
-    /*
-       If user accidentally enters:
-       /images/vada.png
-
-       remove starting slash.
-    */
-
     if (
         image.startsWith("/images/")
     ) {
@@ -1954,11 +1978,6 @@ function normalizeImagePath(image) {
 
     }
 
-
-    /*
-       If user enters a full GitHub URL,
-       keep it unchanged.
-    */
 
     if (
         image.startsWith("http://") ||
@@ -1969,11 +1988,6 @@ function normalizeImagePath(image) {
 
     }
 
-
-    /*
-       Otherwise automatically add
-       images/
-    */
 
     return "images/" + image;
 
@@ -2377,7 +2391,14 @@ async function() {
                     name: name,
                     price: price,
                     category: category,
-                    image: image
+                    image: image,
+
+                    cake:
+                        name
+                        .toLowerCase()
+                        .includes(
+                            "birthday cake"
+                        )
                 }
 
             );
@@ -2409,11 +2430,6 @@ async function() {
                     icon: "🍰",
                     available: true,
 
-                    /*
-                       Birthday Cake can still
-                       be recognized as a cake.
-                    */
-
                     cake:
                         name
                         .toLowerCase()
@@ -2423,6 +2439,7 @@ async function() {
 
                     createdAt:
                         serverTimestamp()
+
                 }
 
             );
@@ -2455,7 +2472,8 @@ async function() {
 
 
         message.innerText =
-            "❌ Error saving product.";
+            "❌ Error saving product: " +
+            error.message;
 
     }
 
@@ -2765,7 +2783,12 @@ async function() {
     catch (error) {
 
         console.error(
+            "Logout error:",
             error
+        );
+
+        alert(
+            "❌ Logout failed."
         );
 
     }
