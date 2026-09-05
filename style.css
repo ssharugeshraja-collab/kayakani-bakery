@@ -1314,3 +1314,220 @@ footer p {
     transform: translateX(-50%);
     z-index: 10;
 }
+
+/* =====================================================
+   CART FIX
+   ===================================================== */
+
+.cart-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.60);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cart-box {
+    width: min(520px, 94vw);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 22px;
+    padding: 28px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item > div {
+    flex: 1;
+}
+
+.cart-item > strong {
+    white-space: nowrap;
+    font-size: 18px;
+}
+
+.cart-item button {
+    margin: 8px 4px 0 0;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   CHECKOUT FIX
+   ===================================================== */
+
+.checkout-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.60);
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+.checkout-box {
+    width: min(680px, 95vw);
+    max-height: 92vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+
+.checkout-box input,
+.checkout-box textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   PICKUP / DELIVERY
+   ===================================================== */
+
+.order-type {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.order-type button {
+    flex: 1;
+    min-height: 52px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    background: white;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    z-index: 5;
+}
+
+.order-type button.selected {
+    background: #174d2b;
+    color: white;
+    border-color: #174d2b;
+}
+
+
+/* =====================================================
+   ADDRESS
+   ===================================================== */
+
+#addressSection {
+    display: none;
+    margin-top: 15px;
+}
+
+
+/* =====================================================
+   PAYMENT
+   ===================================================== */
+
+.payment-options {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.payment-options button {
+    flex: 1;
+    min-height: 52px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    background: white;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    z-index: 5;
+}
+
+.payment-options button.selected {
+    background: #174d2b;
+    color: white;
+    border-color: #174d2b;
+}
+
+
+/* =====================================================
+   UPI
+   ===================================================== */
+
+#upiSection {
+    display: none;
+    margin-top: 15px;
+}
+
+
+/* =====================================================
+   CHECKOUT ITEMS
+   ===================================================== */
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* =====================================================
+   CAKE CUSTOMIZATION
+   ===================================================== */
+
+#cakeCustomization {
+    display: none;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .cart-box,
+    .checkout-box {
+        width: 96vw;
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .cart-item {
+        gap: 10px;
+    }
+
+    .order-type,
+    .payment-options {
+        gap: 8px;
+    }
+
+}
