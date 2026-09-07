@@ -265,7 +265,7 @@ let products = [
         name: "Banana Cake",
         price: 70,
         category: "Cakes",
-        image: "",
+        image: "images/Banana cake.jpeg",
         icon: "🍌"
     },
 
