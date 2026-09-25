@@ -1531,3 +1531,28 @@ footer p {
     }
 
 }
+
+
+/* Bakery Opening Hours */
+.opening-hours {
+    text-align: center;
+    background: #fff8e7;
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px auto;
+    max-width: 500px;
+    color: #4a2c16;
+}
+
+.opening-hours h2 {
+    margin-bottom: 12px;
+    color: #8b5e1b;
+}
+
+.open-status {
+    color: #16803c;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
