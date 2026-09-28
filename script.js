@@ -297,6 +297,11 @@ let selectedPayment = "Cash";
 
 function displayProducts(list = products) {
 
+    // Hide unavailable products
+    list = list.filter(function(product) {
+        return product.available !== false;
+    });
+
     const container = document.getElementById("products");
 
     if (!container) {
@@ -307,7 +312,6 @@ function displayProducts(list = products) {
     container.innerHTML = "";
 
     if (list.length === 0) {
-
         container.innerHTML = `
             <div style="
                 width:100%;
@@ -318,29 +322,19 @@ function displayProducts(list = products) {
                 No products found.
             </div>
         `;
-
         return;
     }
-
 
     list.forEach(function(product) {
 
         const card = document.createElement("div");
-
         card.className = "product-card";
 
-
-        // IMPORTANT:
-        // Find the real product index
-        // inside the main products array.
-
         const realIndex = products.indexOf(product);
-
 
         let imageHTML = "";
 
         if (product.image) {
-
             imageHTML = `
                 <img
                     src="${product.image}"
@@ -348,9 +342,7 @@ function displayProducts(list = products) {
                     onerror="this.style.display='none';"
                 >
             `;
-
         } else {
-
             imageHTML = `
                 <div style="
                     font-size:70px;
@@ -362,15 +354,12 @@ function displayProducts(list = products) {
             `;
         }
 
-
         card.innerHTML = `
-
             <div class="product-image">
                 ${imageHTML}
             </div>
 
             <div class="product-info">
-
                 <h3>
                     ${product.icon || "🍰"}
                     ${product.name}
@@ -386,17 +375,12 @@ function displayProducts(list = products) {
                 >
                     Add to Cart
                 </button>
-
             </div>
         `;
 
-
         container.appendChild(card);
-
     });
-
 }
-
 
 // =====================================================
 // CATEGORY FILTER
@@ -499,54 +483,36 @@ window.addToCart = function(index) {
     const product = products[index];
 
     if (!product) {
-
         console.error("Product not found:", index);
-
         return;
     }
 
-
-    const existing =
-        cart.find(function(item) {
-
-            return item.name === product.name;
-
-        });
-
-
-    if (existing) {
-
-        existing.quantity++;
-
-    } else {
-
-        cart.push({
-
-            name: product.name,
-
-            price: Number(product.price),
-
-            quantity: 1,
-
-            cake: product.cake === true,
-
-            cakeMessage: "",
-
-            instructions: ""
-
-        });
-
+    // Prevent adding unavailable products
+    if (product.available === false) {
+        alert(product.name + " is currently unavailable.");
+        return;
     }
 
+    const existing = cart.find(function(item) {
+        return item.name === product.name;
+    });
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            name: product.name,
+            price: Number(product.price),
+            quantity: 1,
+            cake: product.cake === true,
+            cakeMessage: "",
+            instructions: ""
+        });
+    }
 
     updateCart();
 
-
-    alert(
-        product.name +
-        " added to cart!"
-    );
-
+    alert(product.name + " added to cart!");
 };
 
 
@@ -1734,113 +1700,73 @@ async function loadProductsFromFirebase() {
 
     try {
 
-        const snapshot =
-            await getDocs(
-                collection(db, "products")
-            );
-
+        const snapshot = await getDocs(
+            collection(db, "products")
+        );
 
         snapshot.forEach(function(doc) {
 
             const data = doc.data();
 
-
-            if (data.available === false) {
-
-                return;
-
-            }
-
-
             if (!data.name) {
-
                 return;
-
             }
 
-
-            let image =
-                data.image || "";
-
+            let image = data.image || "";
 
             if (
                 image &&
                 !image.startsWith("http") &&
                 !image.startsWith("images/")
             ) {
-
-                image =
-                    "images/" +
-                    image.replace(
-                        /^\/+/,
-                        ""
-                    );
-
+                image = "images/" + image.replace(/^\/+/, "");
             }
 
-
-            const firebaseProduct = {
-
-                name:
-                    data.name,
-
-                price:
-                    Number(data.price) || 0,
-
-                category:
-                    data.category ||
-                    "Snacks",
-
-                image:
-                    image,
-
-                icon:
-                    data.icon ||
-                    "🍰",
-
-                cake:
-                    data.cake === true
-
+            const categoryMap = {
+                tea: "Tea & Coffee",
+                snacks: "Snacks",
+                bread: "Buns & Bread",
+                mixture: "Mixture",
+                sweets: "Sweets",
+                drinks: "Drinks",
+                cakes: "Cakes"
             };
 
+            const categoryValue = data.category || "Snacks";
 
-            const existingIndex =
-                products.findIndex(
-                    function(product) {
+            const firebaseProduct = {
+                name: data.name,
+                price: Number(data.price) || 0,
+                category:
+                    categoryMap[String(categoryValue).toLowerCase()]
+                    || categoryValue,
+                image: image,
+                icon: data.icon || "🍰",
+                cake: data.cake === true,
+                available: data.available !== false
+            };
 
-                        return product.name
-                            .toLowerCase() ===
-                            firebaseProduct.name
-                                .toLowerCase();
-
-                    }
-                );
-
+            const existingIndex = products.findIndex(
+                function(product) {
+                    return product.name.toLowerCase() ===
+                        firebaseProduct.name.toLowerCase();
+                }
+            );
 
             if (existingIndex !== -1) {
-
-                products[existingIndex] =
-                    firebaseProduct;
-
+                products[existingIndex] = firebaseProduct;
             } else {
-
-                products.push(
-                    firebaseProduct
-                );
-
+                products.push(firebaseProduct);
             }
 
         });
 
-
         displayProducts(products);
-
 
         console.log(
             "✅ Products loaded:",
             products.length
         );
-
 
     } catch (error) {
 
@@ -1849,15 +1775,10 @@ async function loadProductsFromFirebase() {
             error
         );
 
-
-        // Default products still show
-
+        // Show default products if Firebase fails
         displayProducts(products);
-
     }
-
-};
-
+}
 
 // =====================================================
 // START WEBSITE
