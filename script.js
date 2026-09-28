@@ -1181,20 +1181,17 @@ window.payUPI = function() {
 
 };
 
-
 // =====================================================
-// SEND WHATSAPP ORDER
+// SEND ORDER TO WHATSAPP
 // =====================================================
 
-window.sendWhatsAppOrder = async function() {
+window.sendWhatsAppOrder = async function () {
 
+    // CHECK CART
     if (cart.length === 0) {
-
         alert("Your cart is empty.");
-
         return;
     }
-
 
     // -----------------------------------------------
     // CUSTOMER INPUTS
@@ -1203,42 +1200,30 @@ window.sendWhatsAppOrder = async function() {
     const nameInput =
         document.getElementById("customerName");
 
-
     const phoneInput =
         document.getElementById("customerPhone");
-
 
     const addressInput =
         document.getElementById("address");
 
+    const name = nameInput
+        ? nameInput.value.trim()
+        : "";
 
-    const name =
-        nameInput
-            ? nameInput.value.trim()
-            : "";
+    const phone = phoneInput
+        ? phoneInput.value.trim()
+        : "";
 
-
-    const phone =
-        phoneInput
-            ? phoneInput.value.trim()
-            : "";
-
-
-    const address =
-        addressInput
-            ? addressInput.value.trim()
-            : "";
-
+    const address = addressInput
+        ? addressInput.value.trim()
+        : "";
 
     // -----------------------------------------------
     // VALIDATION
     // -----------------------------------------------
 
     if (name === "") {
-
-        alert(
-            "Please enter your name."
-        );
+        alert("Please enter your name.");
 
         if (nameInput) {
             nameInput.focus();
@@ -1247,12 +1232,8 @@ window.sendWhatsAppOrder = async function() {
         return;
     }
 
-
     if (phone === "") {
-
-        alert(
-            "Please enter your phone number."
-        );
+        alert("Please enter your phone number.");
 
         if (phoneInput) {
             phoneInput.focus();
@@ -1261,9 +1242,7 @@ window.sendWhatsAppOrder = async function() {
         return;
     }
 
-
     if (!/^[0-9]{10}$/.test(phone)) {
-
         alert(
             "Please enter a valid 10-digit mobile number."
         );
@@ -1275,15 +1254,11 @@ window.sendWhatsAppOrder = async function() {
         return;
     }
 
-
     if (
         selectedOrderType === "Delivery" &&
         address === ""
     ) {
-
-        alert(
-            "Please enter your delivery address."
-        );
+        alert("Please enter your delivery address.");
 
         if (addressInput) {
             addressInput.focus();
@@ -1292,7 +1267,6 @@ window.sendWhatsAppOrder = async function() {
         return;
     }
 
-
     // -----------------------------------------------
     // ORDER ID
     // -----------------------------------------------
@@ -1300,173 +1274,59 @@ window.sendWhatsAppOrder = async function() {
     const orderId =
         "KYK-" +
         Math.floor(
-            100000 +
-            Math.random() * 900000
+            100000 + Math.random() * 900000
         );
-
 
     // -----------------------------------------------
     // TOTALS
     // -----------------------------------------------
 
-    const itemsTotal =
-        cart.reduce(function(sum, item) {
-
-            return sum +
-                item.price * item.quantity;
-
-        }, 0);
-
+    const itemsTotal = cart.reduce(
+        function (sum, item) {
+            return sum + item.price * item.quantity;
+        },
+        0
+    );
 
     const deliveryCharge =
         selectedOrderType === "Delivery"
             ? 30
             : 0;
 
-
     const grandTotal =
         itemsTotal + deliveryCharge;
-
 
     // -----------------------------------------------
     // CAKE DETAILS
     // -----------------------------------------------
 
     let cakeMessage = "";
-
     let cakeInstructions = "";
 
-
-    const hasCake =
-        cart.some(function(item) {
-
+    const hasCake = cart.some(
+        function (item) {
             return item.cake === true;
-
-        });
-
+        }
+    );
 
     if (hasCake) {
 
         const messageInput =
-            document.getElementById(
-                "cakeMessage"
-            );
-
+            document.getElementById("cakeMessage");
 
         const instructionsInput =
-            document.getElementById(
-                "cakeInstructions"
-            );
-
+            document.getElementById("cakeInstructions");
 
         if (messageInput) {
-
             cakeMessage =
                 messageInput.value.trim();
-
         }
-
 
         if (instructionsInput) {
-
             cakeInstructions =
                 instructionsInput.value.trim();
-
         }
-
     }
-
-
-    // -----------------------------------------------
-    // SAVE ORDER TO FIREBASE
-    // -----------------------------------------------
-
-    try {
-
-        await addDoc(
-            collection(db, "orders"),
-            {
-
-                orderId: orderId,
-
-                name: name,
-
-                phone: phone,
-
-                orderType:
-                    selectedOrderType,
-
-                address:
-                    selectedOrderType === "Delivery"
-                        ? address
-                        : "",
-
-                payment:
-                    selectedPayment,
-
-                items:
-                    cart.map(function(item) {
-
-                        return {
-
-                            name: item.name,
-
-                            price: item.price,
-
-                            quantity: item.quantity
-
-                        };
-
-                    }),
-
-                itemsTotal:
-                    itemsTotal,
-
-                deliveryCharge:
-                    deliveryCharge,
-
-                grandTotal:
-                    grandTotal,
-
-                cakeMessage:
-                    cakeMessage,
-
-                cakeInstructions:
-                    cakeInstructions,
-
-                status:
-                    "New",
-
-                createdAt:
-                    serverTimestamp()
-
-            }
-        );
-
-
-        console.log(
-            "✅ Order saved:",
-            orderId
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "❌ Firebase order error:",
-            error
-        );
-
-
-        alert(
-            "Order could not be saved. Please try again."
-        );
-
-
-        return;
-
-    }
-
 
     // -----------------------------------------------
     // WHATSAPP MESSAGE
@@ -1475,46 +1335,34 @@ window.sendWhatsAppOrder = async function() {
     let message =
         "🧁 *KAYAKANI BAKERY & SWEETS*%0A%0A";
 
-
     message +=
         "*Order ID:* " +
         encodeURIComponent(orderId) +
         "%0A";
-
 
     message +=
         "*Customer:* " +
         encodeURIComponent(name) +
         "%0A";
 
-
     message +=
         "*Phone:* " +
         encodeURIComponent(phone) +
         "%0A";
 
-
     message +=
         "*Order Type:* " +
-        encodeURIComponent(
-            selectedOrderType
-        ) +
+        encodeURIComponent(selectedOrderType) +
         "%0A";
-
 
     message +=
         "*Payment:* " +
-        encodeURIComponent(
-            selectedPayment
-        ) +
+        encodeURIComponent(selectedPayment) +
         "%0A%0A";
 
+    message += "*Items:*%0A";
 
-    message +=
-        "*Items:*%0A";
-
-
-    cart.forEach(function(item) {
+    cart.forEach(function (item) {
 
         message +=
             encodeURIComponent(
@@ -1522,70 +1370,49 @@ window.sendWhatsAppOrder = async function() {
                 " × " +
                 item.quantity +
                 " = ₹" +
-                (
-                    item.price *
-                    item.quantity
-                )
+                (item.price * item.quantity)
             ) +
             "%0A";
-
     });
-
 
     message +=
         "%0A*Items Total:* ₹" +
         itemsTotal;
 
-
-    if (
-        selectedOrderType === "Delivery"
-    ) {
+    if (selectedOrderType === "Delivery") {
 
         message +=
-            "%0A*Delivery Charge:* ₹30";
-
+            "%0A*Delivery Charge:* ₹" +
+            deliveryCharge;
 
         message +=
             "%0A*Address:* " +
             encodeURIComponent(address);
-
     }
-
 
     message +=
         "%0A*Grand Total:* ₹" +
         grandTotal;
 
-
     if (cakeMessage !== "") {
 
         message +=
             "%0A%0A🎂 *Cake Message:* " +
-            encodeURIComponent(
-                cakeMessage
-            );
-
+            encodeURIComponent(cakeMessage);
     }
-
 
     if (cakeInstructions !== "") {
 
         message +=
             "%0A*Cake Instructions:* " +
-            encodeURIComponent(
-                cakeInstructions
-            );
-
+            encodeURIComponent(cakeInstructions);
     }
-
 
     // -----------------------------------------------
     // WHATSAPP NUMBER
     // -----------------------------------------------
 
-    const whatsappNumber =
-        "919025611796";
-
+    const whatsappNumber = "919025611796";
 
     const whatsappURL =
         "https://wa.me/" +
@@ -1593,6 +1420,11 @@ window.sendWhatsAppOrder = async function() {
         "?text=" +
         message;
 
+    // -----------------------------------------------
+    // OPEN WHATSAPP
+    // -----------------------------------------------
+
+    window.open(whatsappURL, "_blank");
 
     // -----------------------------------------------
     // CLEAR CART
@@ -1602,55 +1434,29 @@ window.sendWhatsAppOrder = async function() {
 
     updateCart();
 
-
     // -----------------------------------------------
     // CLOSE CHECKOUT
     // -----------------------------------------------
 
     closeCheckout();
 
-
     // -----------------------------------------------
     // CONFIRMATION
     // -----------------------------------------------
 
     const confirmationModal =
-        document.getElementById(
-            "confirmationModal"
-        );
-
+        document.getElementById("confirmationModal");
 
     const confirmationOrderId =
-        document.getElementById(
-            "orderId"
-        );
-
+        document.getElementById("orderId");
 
     if (confirmationOrderId) {
-
-        confirmationOrderId.innerText =
-            orderId;
-
+        confirmationOrderId.innerText = orderId;
     }
-
 
     if (confirmationModal) {
-
-        confirmationModal.style.display =
-            "flex";
-
+        confirmationModal.style.display = "flex";
     }
-
-
-    // -----------------------------------------------
-    // OPEN WHATSAPP
-    // -----------------------------------------------
-
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
-
 };
 
 
@@ -1658,23 +1464,15 @@ window.sendWhatsAppOrder = async function() {
 // CLOSE CONFIRMATION
 // =====================================================
 
-window.closeConfirmation = function() {
+window.closeConfirmation = function () {
 
     const confirmationModal =
-        document.getElementById(
-            "confirmationModal"
-        );
-
+        document.getElementById("confirmationModal");
 
     if (confirmationModal) {
-
-        confirmationModal.style.display =
-            "none";
-
+        confirmationModal.style.display = "none";
     }
-
 };
-
 
 // =====================================================
 // LOAD PRODUCTS FROM FIREBASE
