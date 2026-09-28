@@ -1424,8 +1424,51 @@ window.sendWhatsAppOrder = async function () {
     // OPEN WHATSAPP
     // -----------------------------------------------
 
-    window.open(whatsappURL, "_blank");
+   // SAVE ORDER TO FIREBASE
 
+try {
+    await addDoc(collection(db, "orders"), {
+        orderId: orderId,
+        name: name,
+        phone: phone,
+
+        orderType: selectedOrderType,
+        address: selectedOrderType === "Delivery" ? address : "",
+
+        payment: selectedPayment,
+
+        items: cart.map(function(item) {
+            return {
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity
+            };
+        }),
+
+        itemsTotal: itemsTotal,
+        deliveryCharge: deliveryCharge,
+        grandTotal: grandTotal,
+
+        cakeMessage: cakeMessage,
+        cakeInstructions: cakeInstructions,
+
+        status: "New",
+        createdAt: serverTimestamp()
+    });
+
+    console.log("Order saved successfully:", orderId);
+
+} catch (error) {
+    console.error("Firebase order error:", error);
+
+    alert(
+        "Order could not be saved in the admin dashboard. " +
+        "Please check your Firebase settings."
+    );
+}
+
+// OPEN WHATSAPP
+window.open(whatsappURL, "_blank");
     // -----------------------------------------------
     // CLEAR CART
     // -----------------------------------------------
