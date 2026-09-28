@@ -178,7 +178,7 @@ let products = [
 
     // Sweets
     {
-        name: "Normal Sweets",
+        name: "Normal Sweets-250g",
         price: 150,
         category: "Sweets",
         image: "images/normal sweets-250g.png",
@@ -186,7 +186,7 @@ let products = [
     },
 
     {
-        name: "Milk Sweets",
+        name: "Milk Sweets-250g",
         price: 250,
         category: "Sweets",
         image: "images/milk sweets.png",
