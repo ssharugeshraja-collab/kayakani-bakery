@@ -176,23 +176,7 @@ let products = [
     },
 
 
-    // Sweets
-    {
-        name: "Normal Sweets-250g",
-        price: 150,
-        category: "Sweets",
-        image: "images/normal sweets-250g.png",
-        icon: "🍬"
-    },
-
-    {
-        name: "Milk Sweets-250g",
-        price: 250,
-        category: "Sweets",
-        image: "images/milk sweets.png",
-        icon: "🍬"
-    },
-
+   
 
     // Drinks
     {
