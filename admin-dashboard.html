@@ -860,14 +860,17 @@ function loadOrders() {
 
         },
 
-        function(error) {
+      function(error) {
+    console.error("Orders error:", error);
 
-            console.error(
-                "Orders error:",
-                error
-            );
-
-        }
+    document.getElementById("ordersList").innerHTML = `
+        <div class="empty" style="color:red;">
+            ❌ Unable to load orders.
+            <br><br>
+            ${escapeHTML(error.message)}
+        </div>
+    `;
+}
 
     );
 
