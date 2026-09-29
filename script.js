@@ -869,7 +869,6 @@ function setupOrderTracking() {
         result.textContent = "Checking your order...";
 
         try {
-            // The tracking code is the Firestore document ID.
             const trackingRef = doc(db, "tracking", trackingCode);
             const trackingSnap = await getDoc(trackingRef);
 
@@ -893,7 +892,6 @@ function setupOrderTracking() {
         }
     });
 }
-
 // =====================================================
 // LOAD PRODUCTS FROM FIRESTORE
 // =====================================================
