@@ -12,9 +12,10 @@ import {
     collection,
     getDocs,
     addDoc,
-    serverTimestamp,
     doc,
-    getDoc
+    getDoc,
+    setDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
