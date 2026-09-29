@@ -1651,3 +1651,45 @@ footer p {
     }
 }
 
+.order-tracking {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px #0001;
+    text-align: center;
+}
+
+.order-tracking h2 {
+    color: #173b20;
+}
+
+#trackOrderForm {
+    display: grid;
+    gap: 12px;
+}
+
+#trackOrderForm input,
+#trackOrderForm button {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+#trackOrderForm input {
+    border: 1px solid #ccc;
+}
+
+#trackOrderForm button {
+    background: #173b20;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#trackingResult {
+    margin-top: 20px;
+    line-height: 1.7;
+}
