@@ -785,8 +785,14 @@ window.sendWhatsAppOrder = async function() {
             createdAt: serverTimestamp()
         });
 
-        console.log("Order saved:", orderId);
+       // Create a tracking record for this order
+await setDoc(doc(db, "tracking", trackingCode), {
+    orderId: orderId,
+    status: "New",
+    createdAt: serverTimestamp()
+});
 
+console.log("Tracking created:", trackingCode);
     } catch (error) {
         console.error("Firebase order error:", error);
 
