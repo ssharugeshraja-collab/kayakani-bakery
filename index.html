@@ -913,6 +913,34 @@
 
 </div>
 
+<!-- CUSTOMER ORDER TRACKING -->
+<section class="order-tracking">
+    <h2>📦 Track Your Order</h2>
+    <p>Enter your order number and mobile number.</p>
+
+    <form id="trackOrderForm">
+        <input
+            type="text"
+            id="trackOrderId"
+            placeholder="Order ID (e.g. KYK-123456)"
+            required
+        >
+
+        <input
+            type="tel"
+            id="trackPhone"
+            placeholder="10-digit mobile number"
+            pattern="[0-9]{10}"
+            maxlength="10"
+            required
+        >
+
+        <button type="submit">Track Order</button>
+    </form>
+
+    <div id="trackingResult" aria-live="polite"></div>
+</section>
+    
 
 <!-- ================= FOOTER ================= -->
 
