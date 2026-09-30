@@ -1111,7 +1111,6 @@ function isAvailableForCustomer(product) {
 
     const allowedCategories = [
         "mixture",
-        "snacks",
         "sweets"
     ];
 
