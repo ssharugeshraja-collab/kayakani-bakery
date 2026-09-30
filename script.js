@@ -1095,17 +1095,17 @@ document.getElementById("retryLocationBtn")
     ?.addEventListener("click", requestCustomerLocation);
 
 function isAvailableForCustomer(product) {
-    // Do not display products until location is verified.
+    // Show no products until location is verified
     if (!locationVerified) {
         return false;
     }
 
-    // Local customers can see all products.
+    // Within 10 km: show all available products
     if (customerDistanceKm <= LOCAL_DELIVERY_LIMIT_KM) {
         return true;
     }
 
-    // Beyond 10 km, allow only courier-friendly products.
+    // Beyond 10 km: allow only courier-friendly products
     const name = (product.name || "").toLowerCase();
     const category = (product.category || "").toLowerCase();
 
