@@ -245,8 +245,11 @@ let selectedPayment = "Cash";
 // =====================================================
 
 function displayProducts(list = products) {
-    list = list.filter(product => product.available !== false);
-
+    list = list.filter(product =>
+        product.available !== false &&
+        isAvailableForCustomer(product)
+    );
+    
     const container = document.getElementById("products");
     if (!container) return;
 
@@ -976,3 +979,144 @@ document.addEventListener("DOMContentLoaded", function() {
     setupOrderTracking();
     loadProductsFromFirebase();
 });
+
+// =====================================================
+// LOCATION ACCESS AND DELIVERY DISTANCE
+// =====================================================
+
+// Replace these with your bakery's actual Google Maps coordinates.
+const BAKERY_LATITUDE = 10.367;
+const BAKERY_LONGITUDE = 77.980;
+
+const LOCAL_DELIVERY_LIMIT_KM = 10;
+
+let customerLatitude = null;
+let customerLongitude = null;
+let customerDistanceKm = null;
+let locationVerified = false;
+
+// Calculate straight-line distance between two coordinates.
+function calculateDistanceKm(lat1, lon1, lat2, lon2) {
+    const earthRadiusKm = 6371;
+
+    const toRadians = degrees => degrees * Math.PI / 180;
+
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRadians(lat1)) *
+        Math.cos(toRadians(lat2)) *
+        Math.sin(dLon / 2) ** 2;
+
+    return earthRadiusKm *
+        2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function requestCustomerLocation() {
+    const message = document.getElementById("locationMessage");
+    const allowButton = document.getElementById("allowLocationBtn");
+    const retryButton = document.getElementById("retryLocationBtn");
+
+    if (!navigator.geolocation) {
+        message.textContent =
+            "Your browser does not support location access.";
+        retryButton.hidden = false;
+        return;
+    }
+
+    allowButton.disabled = true;
+    retryButton.hidden = true;
+    message.textContent = "Getting your location...";
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            customerLatitude = position.coords.latitude;
+            customerLongitude = position.coords.longitude;
+
+            customerDistanceKm = calculateDistanceKm(
+                BAKERY_LATITUDE,
+                BAKERY_LONGITUDE,
+                customerLatitude,
+                customerLongitude
+            );
+
+            locationVerified = true;
+
+            document.getElementById("locationOverlay").style.display =
+                "none";
+
+            console.log(
+                "Distance from bakery:",
+                customerDistanceKm.toFixed(2),
+                "km"
+            );
+
+            // Refresh the products using your existing function.
+            if (typeof displayProducts === "function") {
+                displayProducts();
+            }
+        },
+        function(error) {
+            allowButton.disabled = false;
+            retryButton.hidden = false;
+
+            if (error.code === error.PERMISSION_DENIED) {
+                message.textContent =
+                    "Location permission was denied. Allow location access " +
+                    "in your browser settings, then try again.";
+            } else if (error.code === error.POSITION_UNAVAILABLE) {
+                message.textContent =
+                    "Your location is unavailable. Please try again.";
+            } else {
+                message.textContent =
+                    "Location request timed out. Please try again.";
+            }
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 0
+        }
+    );
+}
+
+document.getElementById("allowLocationBtn")
+    ?.addEventListener("click", requestCustomerLocation);
+
+document.getElementById("retryLocationBtn")
+    ?.addEventListener("click", requestCustomerLocation);
+
+function isAvailableForCustomer(product) {
+    // Do not display products until location is verified.
+    if (!locationVerified) {
+        return false;
+    }
+
+    // Local customers can see all products.
+    if (customerDistanceKm <= LOCAL_DELIVERY_LIMIT_KM) {
+        return true;
+    }
+
+    // Beyond 10 km, allow only courier-friendly products.
+    const name = (product.name || "").toLowerCase();
+    const category = (product.category || "").toLowerCase();
+
+    const allowedCategories = [
+        "mixture",
+        "snacks",
+        "sweets"
+    ];
+
+    const allowedNames = [
+        "mixture",
+        "sevu",
+        "sweet",
+        "sweets",
+        "biscuits"
+    ];
+
+    return allowedCategories.includes(category) ||
+        allowedNames.some(item => name.includes(item));
+}
