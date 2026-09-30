@@ -1082,8 +1082,14 @@ function requestCustomerLocation() {
     );
 }
 
-document.getElementById("allowLocationBtn")
-    ?.addEventListener("click", requestCustomerLocation);
+const allowButton = document.getElementById("allowLocationBtn");
+
+console.log("Location button found:", allowButton);
+
+allowButton?.addEventListener("click", function () {
+    console.log("Location button clicked!");
+    requestCustomerLocation();
+});
 
 document.getElementById("retryLocationBtn")
     ?.addEventListener("click", requestCustomerLocation);
