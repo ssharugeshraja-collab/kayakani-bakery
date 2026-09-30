@@ -59,7 +59,31 @@
 
 
 <body>
+<!-- LOCATION ACCESS POPUP -->
+<div id="locationOverlay" class="location-overlay">
+    <div class="location-box">
+        <div class="location-icon">📍</div>
 
+        <h2>Welcome to Kayakani Bakery!</h2>
+
+        <p>
+            Allow your location to check delivery availability
+            and see the products available in your area.
+        </p>
+
+        <button id="allowLocationBtn">
+            Allow Location Access
+        </button>
+
+        <p id="locationMessage" role="status">
+            Location permission is required to continue.
+        </p>
+
+        <button id="retryLocationBtn" hidden>
+            Try Again
+        </button>
+    </div>
+</div>
 
 <!-- ================= NAVBAR ================= -->
 
